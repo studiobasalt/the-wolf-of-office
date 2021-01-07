@@ -1,10 +1,11 @@
 from inc.classes.Command import Command
 from inc.classes.PlaySound import PlaySound
 
-class Bell(Command):
+class myCommand(Command):
 
     COMMAND = '/bell'
+    DESCRIPTION = 'Ring the bell for a sale!'
 
-    def run(self, chat_id):
-        self.bot.sendMessage(chat_id, "Stonks!!")
+    def run(self, data):
+        self.bot.sendMessage(data['chat_id'], "Stonks!!")
         PlaySound().play('bell.mp3')

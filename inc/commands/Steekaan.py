@@ -2,10 +2,11 @@ from inc.classes.Command import Command
 from inc.classes.PlaySound import PlaySound
 
 
-class Steekaan(Command):
+class myCommand(Command):
 
     COMMAND = '/steekaan'
+    DESCRIPTION = 'Steek aan dat ding!!'
 
-    def run(self, chat_id):
-        self.bot.sendMessage(chat_id, "Steek aan dat ding!!!!!")
+    def run(self, data):
+        self.bot.sendMessage(data['chat_id'], "Steek aan dat ding!!!!!")
         PlaySound().play('steekaan.mp3')

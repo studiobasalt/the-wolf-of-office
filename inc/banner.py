@@ -1,0 +1,7 @@
+print("-")
+print("####################################")
+print("#")
+print("# The Wolf of Office")
+print("# Made @ Studio Basalt by Matthijs Knigge")
+print("#")
+print("####################################")
