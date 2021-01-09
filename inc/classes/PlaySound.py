@@ -18,6 +18,4 @@ class PlaySound:
 
     def kill(self):
         mixer.init();
-        mixer.music.load(self.getFilePath('bell.mp3'))
-        mixer.music.play()
         mixer.music.stop()

@@ -1,0 +1,12 @@
+[Unit]
+Description=The Wolf of Office service
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=python3 /usr/local/bin/the-wolf-of-office/theWolf.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target

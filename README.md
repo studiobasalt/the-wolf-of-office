@@ -10,8 +10,11 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 /bell - Ring the bell for a sale! <br>
 /relax - McConaughey chest beat <br>
 /steekaan - Steek aan dat ding! <br>
+/bier - Only when its time for beer! <br>
+/flipflap - This is almost the best song in the world! <br>
+/solong - Solong gayboyssss
 #### Comming soon
-/wieIsDeLul naam1,naam2,etc - Wie o wie is de lul? <br>
+/wieIsDeLul - Wie o wie is de lul? <br>
 /lunchtime - Time for lunch! <br>
 
 ## Advanced Commands
@@ -19,24 +22,32 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 #### Comming soon
 /startupMsg - Set a message on server startup <br>
 
-## How to use
-1. Instal python3 and pip3
-2. run the installer script (bash install.sh)
-3. run the run script (bash run.sh)
+## How to Install
+1. (Advanced) Run install.sh
+   (OSX) Open the folder ./resources/easyOSX and open install.app
+2. Search for the BotFather on Telegram
+3. Send /newbot to create a newbot
+4. Follow the instructions of the BotFather
+5. After creation send /mybots
+6. Open your bot
+7. Open "API Token"
+8. Copy this token and past it into a new file named .token
+9. Place .token in the same folder as .token-template
+10. (Advanced) bash run.sh
+    (OSX) Open the folder ./resources/easyOSX and open run.app
+11. Enjoy
 
-## Start developing
-#### Add the Telegram API token
-Copy your Telegram bot token and paste it into a file named .token
-
-#### How to add a new command
-(comming soon)
+## How to add a new command
+1. Copy the command_template.py file in the ./inc folder to ./inc/commands
+2. Rename the file to your command
+3. Setup the command
+4. (optional) Place your sound files in de ./sounds folder
+5. Update this README file
 
 ## Comming soon
-- Auto updater
-- Run script on boot (Raspberry pi)
 - On Boot message
 - Add of a database to remember settings
 
 ## Credits
-[Studio Basalt](https://studiobasalt.com "Studio Basalt")
-[51Designs](https://www.51designs.nl/)
+[Studio Basalt](https://studiobasalt.com "Studio Basalt") <br>
+[51Designs](https://www.51designs.nl/) <br>

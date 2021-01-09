@@ -3,7 +3,7 @@ import time
 from telepot.loop import MessageLoop
 import os
 import importlib
-
+import sys
 
 class WolfBot():
 
@@ -13,14 +13,24 @@ class WolfBot():
         self.config = config
         self.loadBot()
         self.autoLoadCommands()
+        self.testBot()
 
     def getToken(self):
         def getFilePath():
             basepath = os.path.dirname(__file__)
             return os.path.abspath(os.path.join(basepath, "..", "..", ".token"))
         def getTokenFromFile():
-            with open(getFilePath(), 'r') as file:
-                return file.read().replace('\n', '')
+            tokenFile = False
+            try:
+                tokenFile = open(getFilePath(), 'r')
+                with tokenFile as file:
+                    return file.read().replace('\n', '')
+            except IOError:
+                print("ERROR: No .token file found. Past your Telegram bots API token in a .token file")
+                sys.exit()
+            finally:
+                if tokenFile:
+                    tokenFile.close()
 
         return getTokenFromFile()
 
@@ -28,15 +38,27 @@ class WolfBot():
         self.bot = telepot.Bot(self.getToken())
 
     def testBot(self):
-        print(self.bot.getMe())
+        try:
+            me = self.bot.getMe()
+            if me['id']:
+                pass
+        except Exception as e:
+            print(e)
+            print("ERROR: Telegram bot is not connecting. Is your token correct? Do you have internet?")
+            sys.exit()
+
+    def getCommandNames(self):
+        nameList = []
+        for file in os.listdir("inc/commands"):
+            if file.endswith(".py"):
+                nameList.append(file.replace('.py', ''))
+        return nameList
 
     def autoLoadCommands(self):
-        for commandName in self.config['loadCommands']:
+
+        for commandName in self.getCommandNames():
             self.importCommand(commandName)
             pass
-
-    def reloadCommands(self):
-        pass
 
     def importCommand(self, commandName):
         module = importlib.import_module('inc.commands.' + commandName)

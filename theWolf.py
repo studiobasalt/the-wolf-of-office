@@ -2,16 +2,7 @@ import inc.banner
 
 # Config of server
 config = {
-    'debug': False,
-    'loadCommands': [ # Add .py files from the inc/commands folder
-        'Help',
-        'Bell',
-        'Relax',
-        'Steekaan',
-        'Kill',
-        'Update',
-        'HelpAdvanced',
-    ]
+    'debug': False
 }
 
 # init Bot

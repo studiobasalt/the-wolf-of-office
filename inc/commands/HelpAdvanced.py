@@ -4,7 +4,7 @@ from inc.classes.PlaySound import PlaySound
 
 class myCommand(Command):
 
-    COMMAND = '/helpAdvanced'
+    COMMAND = '/helpadvanced'
     DESCRIPTION = 'Show all advanced commands'
 
     def run(self, data):

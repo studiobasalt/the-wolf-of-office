@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+# cd ../../../../../
+
+string=$(cat <<EOF
+    set UnixPath to POSIX path of ((path to me as text) & "::")
+	tell application "Terminal"
+		activate
+		tell window 1
+			do script "bash " & UnixPath & "../../install.sh"
+		end tell
+	end tell
+EOF)
+
+echo $string
+
+osascript -e "$string" > /dev/null
+
+
+# osascript -e 'tell application "Finder"
+# 	set myWin to window 1
+# 	set thePath to (quoted form of POSIX path of (target of myWin as alias))
+# 	tell application "Terminal"
+# 		activate
+# 		tell window 1
+# 			do script "cd '+ '/' +'" & thePath
+# 		end tell
+# 	end tell
+# end tell' > /dev/null

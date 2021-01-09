@@ -3,6 +3,7 @@ from inc.classes.PlaySound import PlaySound
 import os
 import sys
 import time
+import git
 
 class myCommand(Command):
 
@@ -12,10 +13,17 @@ class myCommand(Command):
 
     def getMainPath(self):
             basepath = os.path.dirname(__file__)
-            return os.path.abspath(os.path.join(basepath, "..", "..", 'theWolf.py'))
+            return os.path.abspath(os.path.join(basepath, "..", ".."))
 
     def run(self, data):
+        #Update this git repo
+        g = git.cmd.Git(self.getMainPath())
+        g.pull()
+
+        # Restart script
         time.sleep(1)
-        os.execl(sys.executable, 'python', self.getMainPath())
+        os.execl(sys.executable, 'python', self.getMainPath() + '/theWolf.py')
+
+        # Stop current script
         time.sleep(1)
         data['wolfBot'].status = False;
