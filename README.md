@@ -1,4 +1,4 @@
-# The Wolf of Office V0.5
+# The Wolf of Office V0.6
 
 Telegram bot made for the 51basalt office
 
@@ -19,8 +19,15 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 
 ## Advanced Commands
 /update - Update server to latest version and reload commands <br>
+/getchat - Get all the chat info in the terminal <br>
 #### Comming soon
+/dumpdb - Dump the database to terminal <br>
 /startupMsg - Set a message on server startup <br>
+
+## Fast install for linux
+```bash
+$ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/install.sh)
+```
 
 ## How to Install
 1. (Advanced) Run install.sh

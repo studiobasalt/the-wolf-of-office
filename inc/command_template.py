@@ -20,3 +20,18 @@ class myCommand(Command): # Don't change this!
 
         # Kill sound
         PlaySound().kill()
+
+        # Store data in database. Data is only available local
+        # Multiple tabels voor multiple categories
+        # Value property is optional. All types are legit
+        data.db.options.add('keyName', 'value')
+        data.db.data.add('keyName', {
+            'key1' : 'data1'
+            'key2' : 'etc..'
+        })
+        data.db.users.add('username', 'optionalData')
+
+        # Get data from database
+        myOption = data.db.options.get('keyName')
+        myData = data.db.data.get('keyName')
+        myUser = data.db.users.get('username')

@@ -10,7 +10,7 @@ echo "####################################"
 function adminAccess {
     if [[ $UID != 0 ]]; then
         printColor 'The script needs admin access:'
-        sudo echo "login"
+        sudo echo "login suc6"
     fi
 }
 function printColor {
@@ -24,8 +24,10 @@ function installByOs {
         if ! command -v brew &> /dev/null; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
-        brew install python3
-        brew link python3
+        if ! command -v python3.9 &> /dev/null; then
+            brew install python3.9
+            brew link python3.9
+        fi
     fi
 
     #Install for linux users
@@ -39,14 +41,15 @@ function installByOs {
     fi
 
     #Install standalone for Raspberry pi
-    if ! command -v raspi-config &> /dev/null; then
-        FILE=theWolf.py
-        if test -f "$FILE"
+    deviceFile=$(cat /proc/device-tree/model)
+    if [[ $deviceFile == *"Raspberry"* ]]; then
+        if [[ -f "/etc/passwd" ]]
         then
             update
         else
             installStandAlone
         fi
+        installService
     fi
 }
 
@@ -55,13 +58,13 @@ function installStandAlone {
     cd /usr/local/bin/
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git
     cd the-wolf-of-office
-
-    #Install service
+}
+function installService {
     sudo cp resources/the-wolf.service /lib/systemd/system/
     sudo systemctl daemon-reload
-    sudo systemctl enable the-wolf.service
-    sudo systemctl start the-wolf.service
-    sudo update-rc.d the-wolf.service enable
+    sudo systemctl enable the-wolf
+    sudo systemctl start the-wolf
+    sudo update-rc.d the-wolf enable
 }
 function update {
     git pull
@@ -69,26 +72,19 @@ function update {
 
 function installPipLibs {
     pip3 install telepot
-    pip3 uninstall mpyg321b
     pip3 install importlib
     pip3 install pygame
     pip3 install GitPython
-
-    tput setaf 1
-    read -p "Install development tools? (Not for the noobs! Type Y for Yes N for no:" -n 1 -r
-    echo
-    tput sgr0
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        pip3 install mac-appify
-    else
-        echo 'Understandable, have a nice day';
-    fi
+    pip3 install tinydb
 }
-
+function cleanPipLibs{
+    #for the older versions
+    pip3 uninstall mpyg321b
+}
 
 #Init
 adminAccess
 installByOs
 installPipLibs
+cleanPipLibs
 printColor 'You can close this terminal'

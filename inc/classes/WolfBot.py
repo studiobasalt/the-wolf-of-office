@@ -4,6 +4,7 @@ from telepot.loop import MessageLoop
 import os
 import importlib
 import sys
+from inc.classes.Database import DB
 
 class WolfBot():
 
@@ -11,6 +12,7 @@ class WolfBot():
 
     def __init__(self, config):
         self.config = config
+        self.db = DB()
         self.loadBot()
         self.autoLoadCommands()
         self.testBot()
@@ -85,6 +87,7 @@ class WolfBot():
             if command.getName() == myCommand:
                 command.run({
                     'chat_id' : chat_id,
-                    'wolfBot' : self
+                    'wolfBot' : self,
+                    'db' : self.db
                 })
                 break
