@@ -30,19 +30,18 @@ $ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-off
 ```
 
 ## How to Install
-1. (Advanced) Run install.sh
+1. (Advanced) Run install.sh <br>
    (OSX) Open the folder ./resources/easyOSX and open install.app
 2. Search for the BotFather on Telegram
 3. Send /newbot to create a newbot
 4. Follow the instructions of the BotFather
-5. After creation send /mybots
+5. After creation send to the BotFather /mybots
 6. Open your bot
-7. Open "API Token"
-8. Copy this token and past it into a new file named .token
-9. Place .token in the same folder as .token-template
-10. (Advanced) bash run.sh
+7. Open "API Token" and copy the token
+8. (Advanced) Run setToken.sh <br>
+   (OSX) Open the folder ./resources/easyOSX and open setToken.app
+9. (Advanced) bash run.sh <br>
     (OSX) Open the folder ./resources/easyOSX and open run.app
-11. Enjoy
 
 ## How to add a new command
 1. Copy the command_template.py file in the ./inc folder to ./inc/commands

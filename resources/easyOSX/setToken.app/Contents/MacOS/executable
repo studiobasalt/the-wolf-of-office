@@ -5,7 +5,7 @@ string=$(cat <<EOF
 	tell application "Terminal"
 		activate
 		tell window 1
-			do script "bash " & UnixPath & "../../run.sh"
+			do script "bash " & UnixPath & "../../setToken.sh"
 		end tell
 	end tell
 EOF)

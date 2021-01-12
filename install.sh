@@ -6,6 +6,8 @@ echo "# Made by Studio Basalt"
 echo "#"
 echo "####################################"
 
+# Cd to script dir
+cd "$(dirname "$0")"
 
 function adminAccess {
     if [[ $UID != 0 ]]; then
@@ -43,7 +45,7 @@ function installByOs {
     #Install standalone for Raspberry pi
     deviceFile=$(tr -d '\0' </proc/device-tree/model)
     if [[ $deviceFile == *"Raspberry"* ]]; then
-        if [[ -f "/etc/passwd" ]]
+        if [[ -f "/usr/bin/the-wolf-of-office/theWolf.py" ]]
         then
             update
         else
