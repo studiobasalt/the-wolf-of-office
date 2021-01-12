@@ -63,8 +63,6 @@ function installStandAlone {
 }
 function installService {
     cd /usr/bin/the-wolf-of-office
-    # Set script premmsions
-    chmod 775 run.sh
     # Stop service if availbe
     sudo service the-wolf stop
     # Copy servers file for system
