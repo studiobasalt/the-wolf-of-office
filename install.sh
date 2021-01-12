@@ -90,6 +90,7 @@ function installPipLibs {
 
 function cleanPipLibs {
     pip3 uninstall mpyg321b
+    pip3 uninstall GitPython
 }
 
 #Init

@@ -88,6 +88,7 @@ class WolfBot():
                 command.run({
                     'chat_id' : chat_id,
                     'wolfBot' : self,
-                    'db' : self.db
+                    'db' : self.db,
+                    'config' : self.config
                 })
                 break

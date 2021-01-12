@@ -2,7 +2,8 @@ import inc.banner
 
 # Config of server
 config = {
-    'debug': False
+    'debug': False,
+    'gitResetOnUpdate': True,
 }
 
 # init Bot

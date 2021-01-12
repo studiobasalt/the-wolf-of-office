@@ -3,7 +3,6 @@ from inc.classes.PlaySound import PlaySound
 import os
 import sys
 import time
-import git
 
 class myCommand(Command):
 
@@ -16,9 +15,10 @@ class myCommand(Command):
             return os.path.abspath(os.path.join(basepath, "..", ".."))
 
     def run(self, data):
-        #Update this git repo
-        g = git.cmd.Git(self.getMainPath())
-        g.pull()
+        # Update this git repo
+        if data['config']['gitResetOnUpdate']:
+            os.system("git reset --hard")
+        os.system("git pull")
 
         # Restart script
         time.sleep(1)
