@@ -20,6 +20,7 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 ## Advanced Commands
 /update - Update server to latest version and reload commands <br>
 /getchat - Get all the chat info in the terminal <br>
+/version - Get the server version <br>
 #### Comming soon
 /dumpdb - Dump the database to terminal <br>
 /startupMsg - Set a message on server startup <br>
