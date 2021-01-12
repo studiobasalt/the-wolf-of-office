@@ -71,8 +71,19 @@ function installService {
     sudo systemctl daemon-reload
     # Start on boot
     sudo systemctl enable the-wolf
-    # Start service
-    sudo service the-wolf start
+}
+function startService{
+    deviceFile=$(tr -d '\0' </proc/device-tree/model)
+    if [[ $deviceFile == *"Raspberry"* ]]; then
+        sudo service the-wolf start
+    fi
+}
+function setToken{
+    if ! test -f ".token"; then
+        # yes
+    else
+        bash setToken.sh
+    fi
 }
 
 function update {
@@ -84,7 +95,6 @@ function installPipLibs {
     pip3 install telepot
     pip3 install importlib
     pip3 install pygame
-    pip3 install GitPython
     pip3 install tinydb
 }
 
@@ -98,4 +108,6 @@ adminAccess
 installByOs
 installPipLibs
 cleanPipLibs
+setToken
+startService
 printColor 'You can close this terminal'
