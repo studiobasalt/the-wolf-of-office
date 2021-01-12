@@ -63,6 +63,8 @@ function installStandAlone {
 }
 function installService {
     cd /usr/bin/the-wolf-of-office
+    # Set script premmsions
+    chmod 775 run.sh
     # Stop service if availbe
     sudo service the-wolf stop
     # Copy servers file for system
@@ -89,8 +91,8 @@ function installPipLibs {
 }
 
 function cleanPipLibs {
-    pip3 uninstall mpyg321b
-    pip3 uninstall GitPython
+    pip3 uninstall mpyg321b -y
+    pip3 uninstall GitPython -y
 }
 
 #Init

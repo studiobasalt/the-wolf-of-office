@@ -52,7 +52,9 @@ $ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-off
 
 ## Comming soon
 - On Boot message
-- Add of a database to remember settings
+- Show log command to see last usages by user
+- Better command parsing and also get text data after command
+- Command Wait on user input
 
 ## Credits
 [Studio Basalt](https://studiobasalt.com "Studio Basalt") <br>
