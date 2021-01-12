@@ -10,7 +10,7 @@ echo "####################################"
 function adminAccess {
     if [[ $UID != 0 ]]; then
         printColor 'The script needs admin access:'
-        sudo echo "login suc6"
+        sudo echo "login suc6!"
     fi
 }
 function printColor {
@@ -41,7 +41,7 @@ function installByOs {
     fi
 
     #Install standalone for Raspberry pi
-    deviceFile=$(cat /proc/device-tree/model)
+    deviceFile=$(tr -d '\0' </proc/device-tree/model)
     if [[ $deviceFile == *"Raspberry"* ]]; then
         if [[ -f "/etc/passwd" ]]
         then
@@ -55,18 +55,26 @@ function installByOs {
 
 function installStandAlone {
     #download repo and install
-    cd /usr/local/bin/
+    cd /usr/bin/
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git
     cd the-wolf-of-office
 }
 function installService {
+    cd /usr/bin/the-wolf-of-office
+    # Stop service if availbe
+    sudo service the-wolf stop
+    # Copy servers file for system
     sudo cp resources/the-wolf.service /lib/systemd/system/
+    # Reload config files
     sudo systemctl daemon-reload
+    # Start on boot
     sudo systemctl enable the-wolf
-    sudo systemctl start the-wolf
-    sudo update-rc.d the-wolf enable
+    # Start service
+    sudo service the-wolf start
 }
+
 function update {
+    cd /usr/bin/the-wolf-of-office
     git pull
 }
 
@@ -77,8 +85,8 @@ function installPipLibs {
     pip3 install GitPython
     pip3 install tinydb
 }
-function cleanPipLibs{
-    #for the older versions
+
+function cleanPipLibs {
     pip3 uninstall mpyg321b
 }
 

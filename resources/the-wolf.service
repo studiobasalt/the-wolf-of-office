@@ -5,8 +5,10 @@ Conflicts=getty@tty1.service
 
 [Service]
 Type=simple
-ExecStart=python3 /usr/local/bin/the-wolf-of-office/theWolf.py
+WorkingDirectory=/usr/bin/the-wolf-of-office/
+ExecStart=/usr/bin/the-wolf-of-office/run.sh
 StandardInput=tty-force
+Environment=PYTHONUNBUFFERED=1
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
