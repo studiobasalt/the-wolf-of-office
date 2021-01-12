@@ -72,15 +72,15 @@ function installService {
     # Start on boot
     sudo systemctl enable the-wolf
 }
-function startService{
+function startService {
     deviceFile=$(tr -d '\0' </proc/device-tree/model)
     if [[ $deviceFile == *"Raspberry"* ]]; then
         sudo service the-wolf start
     fi
 }
-function setToken{
+function setToken {
     if ! test -f ".token"; then
-        # yes
+        return
     else
         bash setToken.sh
     fi
