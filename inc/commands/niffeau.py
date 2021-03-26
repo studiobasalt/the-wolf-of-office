@@ -13,7 +13,7 @@ class myCommand(Command): # Don't change this!
         # https://telepot.readthedocs.io/en/latest/reference.html#telepot-helper
 
         # Send a msg
-        self.bot.sendMessage(data['chat_id'], "Ratatatatat!!!!!")
+        self.bot.sendMessage(data['chat_id'], "Tantoe lit")
 
         # Play a sound from the sounds folder
         PlaySound().play('niffeau.mp3')
