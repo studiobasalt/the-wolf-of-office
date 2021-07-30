@@ -38,7 +38,7 @@ function installByOs {
             sudo apt install python3
         fi
         if ! command -v pip3 &> /dev/null; then
-            sudo apt install python-pip3
+            sudo apt install python3-pip
         fi
     fi
 
