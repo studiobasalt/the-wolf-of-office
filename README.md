@@ -13,6 +13,8 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 /bier - Only when its time for beer! <br>
 /flipflap - This is almost the best song in the world! <br>
 /solong - Solong gayboyssss
+/printer - Shows OctoPrint webcam on the TV
+/bitcoin - Shows Bitcoin Stats on the TV
 #### Comming soon
 /wieIsDeLul - Wie o wie is de lul? <br>
 /lunchtime - Time for lunch! <br>
