@@ -26,4 +26,4 @@ class myCommand(Command):
 
         # Stop current script
         time.sleep(1)
-        data['wolfBot'].status = False;
+        data['wolfBot'].status = False
