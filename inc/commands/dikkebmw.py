@@ -8,4 +8,4 @@ class myCommand(Command):
 
     def run(self, data):
         self.bot.sendMessage(data['chat_id'], "DIKKE BMW")
-        PlaySound().play('dikkebmwsound.py')
+        PlaySound().play('dikkebmwsound.mp3')
