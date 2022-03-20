@@ -1,13 +1,15 @@
 from tinydb import TinyDB, Query
-
+from os.path import exists
+from io import open
 
 class DB():
 
+    dbFile = 'res/db.json'
+
     def __init__(self):
-        self.db  = TinyDB('resources/db.json')
+        self.db  = TinyDB(self.dbFile)
         self.options = Table(self.db, 'options')
         self.data = Table(self.db, 'data')
-        self.users = Table(self.db, 'data')
         self.bootMe()
 
     def bootMe(self):
@@ -28,4 +30,4 @@ class Table():
     def get(self, name):
         return self.table.search(self.query[name].any)
 
-help=DB()
+db=DB()

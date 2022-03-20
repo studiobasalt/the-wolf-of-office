@@ -29,9 +29,7 @@ class myCommand(Command): # Don't change this!
             'key1' : 'data1'
             'key2' : 'etc..'
         })
-        data.db.users.add('username', 'optionalData')
 
         # Get data from database
         myOption = data.db.options.get('keyName')
         myData = data.db.data.get('keyName')
-        myUser = data.db.users.get('username')

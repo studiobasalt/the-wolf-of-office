@@ -1,0 +1,11 @@
+[Unit]
+Description=noVNC - remote web control
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/share/noVNC/utils/novnc_proxy
+User=root
+
+[Install]
+WantedBy=default.target

@@ -96,18 +96,14 @@ function installPipLibs {
     pip3 install importlib
     pip3 install pygame
     pip3 install tinydb
-}
-
-function cleanPipLibs {
-    pip3 uninstall mpyg321b -y
-    pip3 uninstall GitPython -y
+    pip3 install flask
+    pip3 install python-dotenv
 }
 
 #Init
 adminAccess
 installByOs
 installPipLibs
-cleanPipLibs
 setToken
 startService
 printColor 'You can close this terminal'

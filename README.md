@@ -29,7 +29,7 @@ This software is made to run on an Raspberry Pi and is tested on OSX
 
 ## Fast install for linux
 ```bash
-$ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/install.sh)
+$ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/bin/install.sh)
 ```
 
 ## How to Install
@@ -53,11 +53,31 @@ $ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-off
 4. (optional) Place your sound files in de ./sounds folder
 5. Update this README file
 
-## Comming soon
-- On Boot message
-- Show log command to see last usages by user
-- Better command parsing and also get text data after command
-- Command Wait on user input
+## Setup the pi
+1. Install os
+2. create ssh file in /boot of sd cart
+3. create a txt file in /boot/ wpa_supplicant.conf
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=NL
+
+network={
+    ssid="YOUR_NETWORK_NAME"
+    psk="YOUR_PASSWORD"
+    key_mgmt=WPA-PSK
+}
+```
+4. Login over ssh
+5. Change ssh password
+7. Install the project
+```
+bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/bin/install.sh)
+```
+4. Local login with realvnc client and edit in UI vnc option (right click icon top)
+    Encryption: Prefer off
+    Authentication: VNC password
+5. 
 
 ## Credits
 [Studio Basalt](https://studiobasalt.com "Studio Basalt") <br>

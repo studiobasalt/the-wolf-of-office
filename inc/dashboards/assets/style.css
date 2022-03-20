@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+main{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+main.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+iframe{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
