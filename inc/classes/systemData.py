@@ -17,9 +17,17 @@ class SystemData():
 
     def env(self, key):
         if key in self.envData.keys():
-            return self.envData[key]
+            value = self.envData[key]
         else:
+            value = False
+
+        #parse boolean
+        if value == "False":
             return False
+        if value == "True":
+            return True
+        return value
+
 
     def setSystem(self):
         self.system.device = self.env('DEVICE_NAME')
@@ -41,5 +49,3 @@ class SystemData():
 
 
 systemData = SystemData()
-
-print(systemData)

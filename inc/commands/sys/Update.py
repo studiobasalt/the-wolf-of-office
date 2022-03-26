@@ -16,14 +16,14 @@ class myCommand(Command):
 
     def run(self, data):
         # Update this git repo
-        if data['config']['gitResetOnUpdate']:
-            os.system("git reset --hard")
+        os.system("git reset --hard")
         os.system("git pull")
 
         # Restart script
         time.sleep(1)
-        os.execl(sys.executable, 'python', self.getMainPath() + '/theWolf.py')
-
+        # os.execl(sys.executable, 'python', self.getMainPath() + '/theWolf.py')
+        # service restart needed
+        # 
         # Stop current script
         time.sleep(1)
         data['wolfBot'].status = False

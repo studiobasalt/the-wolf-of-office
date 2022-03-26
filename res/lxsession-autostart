@@ -1,0 +1,6 @@
+@xset s off
+@xset -dpms
+@xset s noblank
+@chromium-browser --kiosk --incognito -disable-translate --app=https://codex.so/taly
+@unclutter -idle 0
+@/home/pi/autorefresh-chromium.sh //boot script

@@ -6,6 +6,9 @@ import importlib
 import sys
 from inc.classes.Database import DB
 
+
+# https://slack.dev/python-slack-sdk/
+
 class WolfBot():
 
     commands = []

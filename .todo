@@ -1,18 +1,13 @@
-- Intergrate data system
-- Restructure the whole project
-- Test basics
+- teleport instellen
+- Pi scripts nalopen
+- Installer script aanpassen
+- .env opzetter
 - Boards instellen
     - test board server
     - live implementation
     - template systeem
     - grid systeem
     - widgets
-- teleport instellen
-- .env opzetten
-- Pi scripts nalopen
-- Installer script aanpassen
-- Boards uitbereiden met nieuwe schermen
-- Browser class uitbereiden
 - boot script aanpassen
 - commands nalopen
 - overstappen naar slack

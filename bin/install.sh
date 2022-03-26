@@ -2,7 +2,7 @@
 echo "####################################"
 echo "#"
 echo "# Instalation of the Wolf of Office"
-echo "# Made by Studio Basalt"
+echo "# Made by Volcano"
 echo "#"
 echo "####################################"
 
