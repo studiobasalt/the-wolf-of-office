@@ -1,3 +1,7 @@
 #!/bin/bash
 
-php -S localhost:3000
+cd "$(dirname "$0")"
+
+cd ../
+
+flask run

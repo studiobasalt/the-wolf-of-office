@@ -1,6 +1,6 @@
 @xset s off
 @xset -dpms
 @xset s noblank
-@chromium-browser --kiosk --incognito -disable-translate --app=https://codex.so/taly
+@chromium-browser --kiosk --incognito -disable-translate --app=https://localhost:5000
 @unclutter -idle 0
-@/home/pi/autorefresh-chromium.sh //boot script
+@/usr/bin/the-wolf-of-office/bin/pi/boot.sh

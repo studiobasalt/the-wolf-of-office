@@ -12,8 +12,8 @@ update_config=1
 country=NL
 
 network={
-    ssid=""
-    psk=""
+    ssid="Wi-Fry chicken"
+    psk="Kniggeking"
     key_mgmt=WPA-PSK
 }
 EOT

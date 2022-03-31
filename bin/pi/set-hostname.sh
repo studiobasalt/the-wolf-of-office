@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Set hostname for the pi: (.local will be added)"
-read hostname
-sudo raspi-config nonint do_hostname $varname.local
-echo "Hotname set"
+# Go to root dir
+cd "$(dirname "$0")"
+
+# Load env
+. ../load-env-file.sh ../../.env
+
+
+sudo raspi-config nonint do_hostname $DEVICE_NAME

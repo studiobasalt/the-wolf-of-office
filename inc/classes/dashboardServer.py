@@ -1,16 +1,18 @@
 # coding: utf-8
 from flask import Flask, render_template
-from inc.classes.systemData import systemData
+from systemData import systemData
 
 if not systemData.env("DASHBOARD_SERVER"):
     exit()
 
-app = Flask("__main__", template_folder='../dashboards')
-app.run(host='0.0.0.0')
+app = Flask("__main__", template_folder='../dashboards/')
+# app.run(host='0.0.0.0')
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return "<p>Hello, World!</p>"
+    # return render_template('home.html')
+
 
 # @app.route('/dashboard/<dashboard>', strict_slashes=False)
 # @app.route('/dashboard>', strict_slashes=False)
