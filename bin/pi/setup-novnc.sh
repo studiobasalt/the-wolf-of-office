@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
-
 # enable and setup VNC service
 sudo apt-get install realvnc-vnc-server
 sudo raspi-config nonint do_vnc 0
@@ -10,8 +8,11 @@ sudo raspi-config nonint do_vnc 0
 cd /usr/local/share/
 sudo git clone https://github.com/kanaka/noVNC
 
+# Go to root dir
+cd /usr/bin/the-wolf-of-office/
+
 # Create the service
-sudo cp resources/noVNC.service /lib/systemd/system/
+sudo cp res/noVNC.service /lib/systemd/system/
 # Reload config files
 sudo systemctl daemon-reload
 # Start on boot

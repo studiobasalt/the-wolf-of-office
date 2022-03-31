@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /usr/bin/the-wolf-of-office/bin/pi
+
 . ../load-env-file.sh ../../.env
 
 #right left normal inverted

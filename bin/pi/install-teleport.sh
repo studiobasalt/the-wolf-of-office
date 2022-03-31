@@ -1,5 +1,5 @@
 # Go to root dir
-cd "$(dirname "$0")"
+cd /usr/bin/the-wolf-of-office/bin/pi
 
 # Load env
 . ../load-env-file.sh ../../.env

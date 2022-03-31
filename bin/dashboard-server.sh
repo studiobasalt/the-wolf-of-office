@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
+cd /usr/bin/the-wolf-of-office/
 
-cd ../
 
 flask run

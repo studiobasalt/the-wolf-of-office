@@ -105,8 +105,8 @@ function update {
     cd /usr/bin/the-wolf-of-office
     git pull
     cd bin/
-    ./pi/update.sh
-    ./pi/install-dashboard-startup.sh
+    bash ./pi/update.sh
+    bash ./pi/install-dashboard-startup.sh
 }
 
 function installPipLibs {
