@@ -68,9 +68,9 @@ function installServices {
     sudo service wolf-commands stop
     sudo service wofl-dashboard stop
     # Copy servers file for system
-    sudo cp resources/services/noVNCservice /lib/systemd/system/
-    sudo cp resources/services/wolf-dasboard.service /lib/systemd/system/
-    sudo cp resources/services/wolf-commands.service /lib/systemd/system/
+    sudo cp res/services/noVNCservice /lib/systemd/system/
+    sudo cp res/services/wolf-dasboard.service /lib/systemd/system/
+    sudo cp res/services/wolf-commands.service /lib/systemd/system/
     # Reload config files
     sudo systemctl daemon-reload
     # Start on boot
@@ -81,16 +81,16 @@ function installServices {
 function setupPi {
     echo 'Setup Pi'
     reboot=true
-    cd "$(dirname "$0")"
-    ./setup-env-file.sh
-    ./pi/set-hostname.sh
-    ./pi/disable-pi-wiz.sh
-    ./pi/disable-screen-saver.sh
+    cd /usr/bin/the-wolf-of-office/bin/
+    bash ./setup-env-file.sh
+    bash ./pi/set-hostname.sh
+    bash ./pi/disable-pi-wiz.sh
+    bash ./pi/disable-screen-saver.sh
     # ./pi/disable-bluetooth.sh
-    ./pi/disable-wifi-sleep.sh
-    ./pi/install-teleport.sh
-    ./pi/setup-novnc.sh
-    ./pi/boot.sh
+    bash ./pi/disable-wifi-sleep.sh
+    bash ./pi/install-teleport.sh
+    bash ./pi/setup-novnc.sh
+    bash ./pi/boot.sh
 
     update
 }
