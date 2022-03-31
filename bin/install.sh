@@ -26,13 +26,7 @@ function installByOs {
     #Install for osx users
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo 'No support for osx'
-        return
-    fi
-
-    #Install for linux users
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo 'No support for linux'
-        return
+        exit
     fi
 
     #Install standalone for Raspberry pi
@@ -46,18 +40,28 @@ function installByOs {
             setupPi
         fi
         installServices
+        return
     fi
+
+    #Install for linux users
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo 'No support for linux'
+        exit
+    fi
+
     echo 'No support for you OS'
-    return
+    exit
 }
 
 function installStandAlone {
+    echo 'Install standalone'
     #download repo and install
     cd /usr/bin/
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git
     cd the-wolf-of-office
 }
 function installServices {
+    echo 'Install Services'
     cd /usr/bin/the-wolf-of-office
     # Stop service if availbe
     sudo service noVNC stop
@@ -75,6 +79,7 @@ function installServices {
     sudo systemctl enable wolf-dashboard
 }
 function setupPi {
+    echo 'Setup Pi'
     reboot=true
     cd "$(dirname "$0")"
     ./setup-env-file.sh
@@ -90,11 +95,13 @@ function setupPi {
     update
 }
 function startServices {
+    echo 'Start services'
     cd "$(dirname "$0")"
     ./restart-services.sh
 }
 
 function update {
+    echo 'Update Pi'
     cd /usr/bin/the-wolf-of-office
     git pull
     cd bin/
@@ -103,6 +110,7 @@ function update {
 }
 
 function installPipLibs {
+    echo 'install pip libs'
     pip3 install importlib
     pip3 install pygame
     pip3 install tinydb
