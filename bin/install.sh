@@ -74,7 +74,7 @@ function installServices {
     sudo systemctl enable wolf-commands
     sudo systemctl enable wolf-dashboard
 }
-function setupPi{
+function setupPi {
     reboot=true
     cd "$(dirname "$0")"
     ./setup-env-file.sh
