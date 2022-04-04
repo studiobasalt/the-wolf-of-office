@@ -12,7 +12,7 @@ sudo service wofl-dashboard stop
 
 # Copy service file for system
 sudo cp res/services/noVNC.service /lib/systemd/system/
-sudo cp res/services/wolf-dasboard.service /lib/systemd/system/
+sudo cp res/services/wolf-dashboard.service /lib/systemd/system/
 sudo cp res/services/wolf-commands.service /lib/systemd/system/
 
 # Reload config files
