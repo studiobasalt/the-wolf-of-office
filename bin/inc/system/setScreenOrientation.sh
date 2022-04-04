@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd /usr/bin/the-wolf-of-office/bin/pi
+cd
 
-. ../load-env-file.sh ../../.env
+. ./usr/bin/the-wolf-of-office/bin/utls/load-env-file.sh
 
 #right left normal inverted
 DISPLAY=:0 xrandr --output HDMI-1 --rotate $SCREEN_ORIENTATION
