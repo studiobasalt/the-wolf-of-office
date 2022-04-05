@@ -1,3 +1,7 @@
+#!/bin/bash
+
+echo "-- Install Teleport --";
+
 # Go to root dir
 cd /usr/bin/the-wolf-of-office
 
@@ -14,9 +18,9 @@ read TELEPORT_TOKEN
 
 # Create teleport config file
 cp ./res/template.teleport.yaml ./res/teleport.yaml
-sed -i '' -e 's/DEVICE_NAME/'$DEVICE_NAME'/' ./res/teleport.yaml
-sed -i '' -e 's/TELEPORT_TOKEN/'$TELEPORT_TOKEN'/' ./res/teleport.yaml
-sed -i '' -e 's/TELEPORT_MASTER_SERVER/'$TELEPORT_MASTER_SERVER'/' ./res/teleport.yaml
+sed -e 's/DEVICE_NAME/'$DEVICE_NAME'/' ./res/teleport.yaml -i
+sed -e 's/TELEPORT_TOKEN/'$TELEPORT_TOKEN'/' ./res/teleport.yaml -i
+sed -e 's/TELEPORT_MASTER_SERVER/'$TELEPORT_MASTER_SERVER'/' ./res/teleport.yaml -i
 mv ./res/teleport.yaml /etc/
 
 # Install teleport app
