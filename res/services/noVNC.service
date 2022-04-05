@@ -4,7 +4,7 @@ After=graphical.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/share/noVNC/utils/novnc_proxy
+ExecStart=/usr/local/share/noVNC/utils/novnc_proxy --listen 8080
 User=root
 
 [Install]
