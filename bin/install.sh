@@ -25,7 +25,7 @@ then
     reboot=true
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git /usr/bin/the-wolf-of-office/
     cd /usr/bin/the-wolf-of-office/bin/
-    bash ./setup-env-file.sh
+    bash ./inc/install/env-file.sh
     bash ./boot.sh
     bash ./inc/setup-os.sh
     bash ./inc/install/teleport.sh
