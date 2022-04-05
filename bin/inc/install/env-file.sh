@@ -18,5 +18,5 @@ echo '-- .ENV file set --'
 
 # Create .env file
 cp template.env .env
-sed -e 's/DEVICE_NAME_INPUT/'$DEVICE_NAME'/' ./.env .. -i
+sed -e 's/DEVICE_NAME_INPUT/'$DEVICE_NAME'/' ./.env -i
 sed -e 's/SCREEN_ORIENTATION_INPUT/'$SCREEN_ORIENTATION'/' ./.env -i
