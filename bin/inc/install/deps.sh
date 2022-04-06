@@ -1,14 +1,21 @@
 #!/bin/bash
 
 echo '-- Install pip (python3) libs --'
+function install {
+    out=$(pip3 list --disable-pip-version-check | grep $1)
+    if [[ -z $out ]]; then
+        pip3 install $1
+        return
+    fi
+    echo "$1 already intalled"
+}
 
-pip3 install importlib
-pip3 install pygame
-pip3 install tinydb
-pip3 install flask
-pip3 install python-dotenv
+install importlib
+install pygame
+install tinydb
+install Flask
+install python-dotenv
 
 echo '-- Install os packages --'
-
 apt install -y raspberrypi-ui-mods chromium-browser
 apt install -y unclutter
