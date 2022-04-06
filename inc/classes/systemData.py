@@ -10,6 +10,8 @@ class SystemData():
         self.loadEnv()
         self.setupDashboardData()
         self.setupDatabase()
+        self.setSystem()
+        self.setSoftwareVersion()
 
     def loadEnv(self):
         load_dotenv()
