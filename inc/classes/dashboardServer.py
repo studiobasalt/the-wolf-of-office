@@ -1,22 +1,20 @@
 # coding: utf-8
 from flask import Flask, render_template
 from systemData import systemData
+import os
+from requests import get
 
-if not systemData.env("DASHBOARD_SERVER"):
-    exit()
 
-app = Flask("__main__", template_folder='../dashboards/')
-# app.run(host='0.0.0.0')
+template_dir = os.path.abspath('./inc/dashboards/')
+static_dir = os.path.abspath('./inc/dashboards/assets')
+app = Flask(
+    "__main__",
+    template_folder=template_dir,
+    static_folder=static_dir,
+    static_url_path="/static",
+)
 
-@app.route('/')
+
+@app.route('/', strict_slashes=False)
 def index():
-    return "<p>Hello, World!</p>"
-    # return render_template('home.html')
-
-
-# @app.route('/dashboard/<dashboard>', strict_slashes=False)
-# @app.route('/dashboard>', strict_slashes=False)
-# def routeDashboard(dashboard=False):
-#     if not dashboard:
-#         return this.homeRoute.template()
-#     return render_template('dashboard/' + dashboard)
+    return render_template('index.html', data=systemData)
