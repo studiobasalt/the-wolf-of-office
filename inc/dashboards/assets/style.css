@@ -4,16 +4,11 @@ body{
     font-family: sans-serif;
 }
 
-main{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    height: 100vh;
-    overflow: hidden;
-}
 main.center{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 iframe{
