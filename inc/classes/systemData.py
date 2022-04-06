@@ -1,4 +1,4 @@
-from database import db
+from inc.classes.database import db
 import os
 from dotenv import load_dotenv
 
