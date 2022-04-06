@@ -8,7 +8,7 @@ cd /usr/bin/the-wolf-of-office
 # Stop service if availbe
 sudo service noVNC stop
 sudo service wolf-commands stop
-sudo service wofl-dashboard stop
+sudo service wolf-dashboard stop
 
 # Copy service file for system
 sudo cp res/services/noVNC.service /lib/systemd/system/
