@@ -1,0 +1,16 @@
+{% include "header.html" %}
+
+<style media="screen">
+    main{
+        display: grid;
+        grid-template-rows: 1fr;
+        height: 100vh;
+        overflow: hidden;
+    }
+</style>
+
+<main>
+    {% include "widgets/uptime-robot.html" %}
+</main>
+
+{% include "footer.html" %}

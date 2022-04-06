@@ -1,0 +1,11 @@
+{% include "header.html" %}
+
+{% if data.db.options.get('dashboard_template') == '01' %}
+    {% include "templates/01.html" %}
+{% elif data.db.options.get('dashboard_template') == '02' %}
+    {% include "templates/02.html" %}
+{% else %}
+    {% include "templates/home.html" %}
+{% endif %}
+
+{% include "footer.html" %}
