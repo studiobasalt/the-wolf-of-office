@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo '-- Set screen orientation --'
+
 . /usr/bin/the-wolf-of-office/bin/inc/utls/load-env-file.sh
 
 #right left normal inverted
