@@ -14,7 +14,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -132,3 +131,4 @@ dmypy.json
 .token
 db.json
 teleport.yaml
+node_modules
