@@ -6,8 +6,11 @@ echo "# Made by Volcano"
 echo "#"
 echo "####################################"
 
-# Cd to the root
-cd "$(dirname "$0")"
+# Check if script is runned as root
+if [ "$EUID" -ne 0 ]
+  then echo "-- Please run as root (sudo) --"
+  exit
+fi
 
 # Detect supported os
 detect-os(){
