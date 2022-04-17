@@ -15,5 +15,6 @@ app_service:
     enabled: yes
     debug_app: true
     apps:
-    - name: "noVNC - DEVICE_NAME"
-      uri: "http://localhost:6080"
+    - name: "novnc_DEVICE_NAME"
+      insecure_skip_verify: true
+      uri: "http://localhost:5000"
