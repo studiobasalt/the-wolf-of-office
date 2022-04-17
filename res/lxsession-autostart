@@ -1,6 +1,8 @@
 @xset s off
 @xset -dpms
 @xset s noblank
-@chromium-browser --kiosk -disable-translate --disable-web-security --app http://localhost:5000
+@point-rpi
 @unclutter -idle 0
 @/usr/bin/the-wolf-of-office/bin/pi/boot.sh
+
+@chromium-browser --kiosk --disable-translate --disable-web-security http://localhost:5000 --use-gl=egl --noerrdialogs --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/dev/null
