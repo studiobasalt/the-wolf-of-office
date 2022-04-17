@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /usr/bin/the-wolf-of-office/bin/inc/system/
+cd /usr/bin/the-wolf-of-office/
 
-bash ./disable-wifi-sleep.sh
-bash ./setScreenOrientation.sh
+bash ./bin/inc/system/disable-wifi-sleep.sh
+bash ./bin/inc/system/setScreenOrientation.sh
