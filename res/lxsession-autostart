@@ -2,7 +2,7 @@
 @xset -dpms
 @xset s noblank
 @point-rpi
-@unclutter -idle 0
+@unclutter -idle 5
 @/usr/bin/the-wolf-of-office/bin/pi/boot.sh
 
-@chromium-browser --kiosk --disable-translate --disable-web-security http://localhost:5000 --use-gl=egl --noerrdialogs --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/dev/null
+@chromium-browser http://localhost:5000 --args --kiosk --disable-translate --disable-web-security --cors-exempt-headers --disable-oor-cors --use-gl=egl --noerrdialogs --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --user-data-dir=/tmp/ --disk-cache-dir=/dev/null
