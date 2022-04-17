@@ -9,7 +9,7 @@ pip3 uninstall pygame -y
 pip3 uninstall tinydb -y
 pip3 uninstall flask -y
 pip3 uninstall python-dotenv -y
-apt purge -y raspberrypi-ui-mods chromium-browser
+apt purge -y raspberrypi-ui-mods
 apt purge -y unclutter
 mv ./res/teleport.yaml /etc/
 apt purge realvnc-vnc-server -y
