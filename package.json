@@ -1,0 +1,21 @@
+{
+    "scripts": {
+        "start": "",
+        "start:kiosk": "electron ./apps/kiosk-server/main.js",
+        "start:command": "node ./apps/command-server/main.js",
+        "dev:command": "nodemon ./apps/command-server/main.js"
+    },
+    "devDependencies": {
+        "electron": "^18.0.4"
+    },
+    "type": "module",
+    "dependencies": {
+        "@slack/socket-mode": "^1.2.0",
+        "@slack/web-api": "^6.7.1",
+        "app-root-path": "^3.0.0",
+        "dotenv": "^16.0.0",
+        "nodemon": "^2.0.16",
+        "sqlite": "^4.0.25",
+        "sqlite3": "^5.0.3"
+    }
+}
