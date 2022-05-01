@@ -132,3 +132,4 @@ dmypy.json
 db.json
 teleport.yaml
 node_modules
+sqlite3.db
