@@ -1,7 +1,8 @@
 import db from '../../../lib/db'
+import {PREMISSION_DEFAULT_CHANNEL} from './consts'
 
 
-class User {
+class Channel {
     constructor(name) {
         this.name = name
     }
@@ -10,11 +11,11 @@ class User {
         if (this.premissions) {
             return this.premissions
         }
-        return this.premissions = db.getCapabilities(this.name, 'user')
+        return this.premissions = db.getCapabilities(this.name, 'channel')
     }
 
-    userCan(level){
-        currentLevels = db.getUserCapabilities(name, 'user')
+    channelCan(level){
+        currentLevels = this.getPremissions()
         if (!currentLevels) {
             return false
         }
@@ -22,4 +23,4 @@ class User {
     }
 }
 
-export default User
+export default Channel

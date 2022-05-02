@@ -4,9 +4,7 @@ Als datanbase wil ik een opties tabel hebben
 
 Als database wil ik een tabel hebben voor dashbaord settings
 
-Als chatbot wil ik de database makkelijk kunnen oproepen
-
-Als database wil ik voor elke optie en dashbaord een time stamp hebben zodat hier later op gesynced kan worden
+Als database wil ik voor elke tabel een time stamp hebben zodat hier later op gesynced kan worden
 
 Als chatbot wil ik een class extend hebben voor commands
 

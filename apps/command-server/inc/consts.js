@@ -6,5 +6,3 @@ export const PREMISSION_LEVELS = [
     {name: 'volcanoDashboard', level: 10},
     {name: 'admin', level: 100},
 ]
-
-export const PREMISSION_DEFAULT = PREMISSION_LEVELS[0]
