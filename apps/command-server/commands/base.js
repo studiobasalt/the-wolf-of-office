@@ -1,59 +1,35 @@
 // import db from '../../../lib/db.js'
-import User from '../inc/user.js'
-import Channel from '../inc/channel.js'
 import appRoot from 'app-root-path'
 import sound from 'sound-play'
 import webclient from '../inc/slackWebClient.js'
 
 class Command{
     constructor(){
-        this.command = false //Overwrite in extend
+        this.name = false //Overwrite in extend
         this.capabilitiesLevel = 0 //Overwrite in extend
         this.description = "" // Overwrite in extend
     }
     async run(){
         throw new Error("Not implemented yet") // Overwrite in extend
     }
-    async trigger(body, contextCommands){
-        this.setup(body, contextCommands)
-        if (this.command !== this.args[0]) {
+    async trigger(body, context){
+        this.setup(body, context)
+        if (this.name !== this.args[0]) {
             return false
         }
-        if (!this.testPremission()) {
-            throw new Error("You do not have permission to use this command")
-        }
         await this.run()
-        this.log()
+
+        // signal that the command has been processed
         return true
     }
-    setup(body, contextCommands){
-        this.contextCommands = contextCommands
+    setup(body, context){
         this.setCommandArgs(body.text)
         this.body = body
-        this.context = contextCommands
+        this.context = context
     }
     setCommandArgs(rawArgs){
         // split the raw args into an array
         this.args = rawArgs.split(' ') 
-    }
-    testPremission(){
-        const user = this.body.user_id
-        const channel = this.body.channel_id
-
-        this.user = new User(user)
-        this.channel = new Channel(channel)
-
-        if (this.channel.can(this.capabilitiesLevel)) {
-            return true
-        }
-        if (this.user.can(this.capabilitiesLevel)) {
-            return true
-        }
-        return false
-    }
-    log(){
-        const row = 'COMMAND: ' + this.command + '- BY USER: @' + this.body.user + ' - IN: ' + this.body.channel
-        // db.log(row)
     }
 
     // play a sound file from the sounds folder

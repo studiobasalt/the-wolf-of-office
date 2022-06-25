@@ -3,7 +3,7 @@ import Command from '../base.js'
 class Biem extends Command{
     constructor(){
         super()
-        this.command = 'biem'
+        this.name = 'biem'
         this.capabilitiesLevel = 1
         this.description = 'Biem'
     }
