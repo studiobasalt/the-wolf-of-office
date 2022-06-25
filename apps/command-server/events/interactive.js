@@ -1,5 +1,5 @@
 import Base from './base.js'
-import soundBoardModal from '../actions/slack-modals/soundboard.js'
+import soundBoardModal from '../formats/slack-modals/soundboard.js'
 
 
 class Interactive extends Base{

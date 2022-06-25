@@ -3,16 +3,16 @@ import appRoot from 'app-root-path'
 import sound from 'sound-play'
 import webclient from '../inc/slackWebClient.js'
 
-class Command{
-    constructor(){
+class Command {
+    constructor() {
         this.name = false //Overwrite in extend
         this.capabilitiesLevel = 0 //Overwrite in extend
         this.description = "" // Overwrite in extend
     }
-    async run(){
+    async run() {
         throw new Error("Not implemented yet") // Overwrite in extend
     }
-    async trigger(body, context){
+    async trigger(body, context) {
         this.setup(body, context)
         if (this.name !== this.args[0]) {
             return false
@@ -22,18 +22,21 @@ class Command{
         // signal that the command has been processed
         return true
     }
-    setup(body, context){
+    setup(body, context) {
         this.setCommandArgs(body.text)
         this.body = body
         this.context = context
     }
-    setCommandArgs(rawArgs){
+    setCommandArgs(rawArgs) {
         // split the raw args into an array
-        this.args = rawArgs.split(' ') 
+        this.args = rawArgs.split(' ')
+    }
+    hasPremission() {
+        return true
     }
 
     // play a sound file from the sounds folder
-    play(file){
+    play(file) {
         const soundsFolder = appRoot + '/res/sounds/'
         const soundFile = soundsFolder + file
         sound.play(soundFile)
@@ -57,8 +60,8 @@ class Command{
     }
 }
 
-class NotInChannel extends Error{
-    constructor(message){
+class NotInChannel extends Error {
+    constructor(message) {
         super(message)
         this.name = 'NotInChannelError'
     }
