@@ -6,18 +6,18 @@ import env from '../../../lib/load-env.js'
 class SlackConnector{
     constructor(){
         const botToken = env.SLACK_BOT_TOKEN
-        this.webClient = new WebClient(botToken);
+        this.webclient = new WebClient(botToken);
     }
 
-    async say(message, blocks = false, hiddenMessage = false) {
+    async say(message, body, blocks = false, hiddenMessage = false) {
         // if the message is direct we need to send it to the user
-        let channel = this.body.channel_id
-        const isDirectMessage = this.body.channel_name === 'directmessage'
+        let channel = body.channel_id
+        const isDirectMessage = body.channel_name === 'directmessage'
         if (isDirectMessage) {
-            channel = this.body.user_id
+            channel = body.user_id
         }
         // select send method based on if the message is hidden or not
-        let sendMethod = hiddenMessage && !isDirectMessage ? webclient.chat.postEphemeral : webclient.chat.postMessage
+        let sendMethod = hiddenMessage && !isDirectMessage ? this.webclient.chat.postEphemeral : this.webclient.chat.postMessage
         // send the message to the channel
         try {
             await sendMethod({
@@ -25,7 +25,7 @@ class SlackConnector{
                 text: message,
                 blocks: blocks,
                 hidden: hiddenMessage,
-                user: this.body.user_id
+                user: body.user_id
             })
         } catch (error) {
             throw new NotInChannel("Could not send message: " + error)
@@ -33,10 +33,10 @@ class SlackConnector{
     }
 
     // Open in slack a view with the given blocks
-    async openView(view) {
+    async openView(view, body) {
         try {
-            await webclient.views.open({
-                trigger_id: this.body.trigger_id,
+            await this.webclient.views.open({
+                trigger_id: body.trigger_id,
                 view: view
             })
         } catch (error) {
