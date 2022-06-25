@@ -10,10 +10,10 @@ class CommandsEvent extends Base{
 
         //Listen to commands
         this.socket.on('slash_commands', async ({ body, ack }) => {
-            console.log(body)
             try {
                 await this.processWolfCommands(body)
             } catch (e) {
+                console.log(e);
                 if (e.name === 'NotInChannelError') {
                     await ack({text: 'Add me to a channel first to respond!'})
                 } else {
@@ -26,7 +26,7 @@ class CommandsEvent extends Base{
 
     // list all files in the directory of the variable dir and return an array of file locations
     listFiles(dir) {
-        dir = appRoot + '/apps/command-server/user-commands/' + dir;
+        dir = appRoot + '/apps/command-server/commands/' + dir;
         var files = fs.readdirSync(dir);
         var jsFiles = [];
         for (var i = 0; i < files.length; i++) {
