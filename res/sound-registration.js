@@ -2,7 +2,7 @@ export default [
     {
         name: "biem",
         accessControlProperty: "basicsound",
-        file: "biem.mp3",
+        file: "BIEM.mp3",
         description: "Biem !!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     },
     {
