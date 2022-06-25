@@ -43,15 +43,23 @@ class Command {
     }
 
     // send a slack message to the channel
-    async say(message){
+    async say(message, blocks = false, hiddenMessage = false) {
+        // if the message is direct we need to send it to the user
         let channel = this.body.channel_id
-        if (this.body.channel_name === 'directmessage') {
+        const isDirectMessage = this.body.channel_name === 'directmessage'
+        if (isDirectMessage) {
             channel = this.body.user_id
         }
+        // select send method based on if the message is hidden or not
+        let sendMethod = hiddenMessage && !isDirectMessage ? webclient.chat.postEphemeral : webclient.chat.postMessage
+        // send the message to the channel
         try {
-            await webclient.chat.postMessage({
+            await sendMethod({
                 channel: channel,
-                text: message
+                text: message,
+                blocks: blocks,
+                hidden: hiddenMessage,
+                user: this.body.user_id
             })
         } catch (error) {
             throw new NotInChannel("Could not send message: " + error)
