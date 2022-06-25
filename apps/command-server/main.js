@@ -10,22 +10,16 @@ import CommandsEvent from './events/commandsEvent.js'
 
 // Construct socket en api
 const appToken = env.SLACK_APP_TOKEN
-const socketClient = new SocketModeClient({
-    appToken,
-    // logLevel: LogLevel.DEBUG
-});
+const socketClient = new SocketModeClient({appToken});
 
+console.log("Wolf is starting a slack websocket :)")
 
-(async () => {
-    console.log("Wolf is starting a slack websocket :)")
+// Start to listen over a websocket to slack
+await socketClient.start();
 
-    // Start to listen over a websocket to slack
-    await socketClient.start();
-
-    // Construct every event
-    // new NewMember(socketClient)
-    // new IsOnline(socketClient)
-    // new Mention(socketClient)
-    // new Interactive(socketClient)
-    new CommandsEvent(socketClient)
-})();
+// Construct every event
+// new NewMember(socketClient)
+// new IsOnline(socketClient)
+// new Mention(socketClient)
+new Interactive(socketClient)
+new CommandsEvent(socketClient)
