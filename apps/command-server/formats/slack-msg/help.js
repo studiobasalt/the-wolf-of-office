@@ -7,7 +7,7 @@ function generateMsg(commands) {
             "elements": [
                 {
                     "type": "mrkdwn",
-                    "text": `You ${command.hasPremission() ? 'have' : 'have no'} premission to use this command`
+                    "text": `You ${command.hasPremission() ? 'have' : 'dont have'} permission to use this command`
                 }
             ]
         },
@@ -15,7 +15,7 @@ function generateMsg(commands) {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": `*${command.name}* - ${command.description}`
+                "text": `*/wolf ${command.name}* - ${command.description}`
             },
         },
         {

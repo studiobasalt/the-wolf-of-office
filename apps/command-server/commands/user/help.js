@@ -6,7 +6,7 @@ class HelpCommand extends Command {
         super()
         this.name = 'help'
         this.capabilitiesLevel = 1
-        this.description = 'Help'
+        this.description = 'A list of all commands on the wolf of office'
     }
     async run() {
         const helpBlocks = generateHelp(this.context)
