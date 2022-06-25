@@ -1,5 +1,5 @@
-import db from '../../../lib/db'
-import {PREMISSION_DEFAULT_CHANNEL} from './consts'
+// import db from '../../../lib/db'
+// import {PREMISSION_DEFAULT_CHANNEL} from './consts'
 
 
 class Channel {
@@ -11,10 +11,13 @@ class Channel {
         if (this.premissions) {
             return this.premissions
         }
-        return this.premissions = db.getCapabilities(this.name, 'channel')
+        // return this.premissions = db.getCapabilities(this.name, 'channel')
     }
 
-    channelCan(level){
+    can(level){
+        return true
+        console.log('smart setting and extend from cababilties');
+        debugger
         currentLevels = this.getPremissions()
         if (!currentLevels) {
             return false

@@ -1,7 +1,6 @@
 class Base{
-    constructor(socketModeClient, webClient){
+    constructor(socketModeClient){
         this.socket = socketModeClient
-        this.webClient = webClient
         this.init()
     }
 }

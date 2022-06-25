@@ -1,5 +1,5 @@
 
-export const PREMISSION_LEVELS = [
+export const CAPABILITIES = [
     {name: 'guest', level: 0},
     {name: 'member', level: 5},
     {name: '51Dashboard', level: 10},

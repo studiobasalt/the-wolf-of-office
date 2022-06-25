@@ -1,18 +1,6 @@
 Als chatbot wil ik dat een interactive herkent wordt op id
 
-Als datanbase wil ik een opties tabel hebben
-
-Als database wil ik een tabel hebben voor dashbaord settings
-
-Als database wil ik voor elke tabel een time stamp hebben zodat hier later op gesynced kan worden
-
-Als chatbot wil ik een class extend hebben voor commands
-
-als gebruiker wil ik met "/wolf [sound]" een geluid/command afspelen
-
-als chatbot wil ik automatich alle user commands inladen
-
-Als chatbot wil ik automatich alle sys commands inladen
+als gebruiker wil ik onderscheid hebben tussen wolf - wolf-sys en wolf-dash commands
 
 als gebruiker wil ik met "/wolf help" een automatich help met alle commands
 
@@ -54,3 +42,7 @@ Als gebruiker wil ik een popup hebben met alle beschikbare sounds
 Als gebruiker wil ik in de soundboard popup alle devices kunnen selecteren met beschikbare sound
 
 Als gebruiker wil ik een custom sound kunnen toevoegen met een youtube url
+
+Als sync wil ik triggeren
+
+Als admin wil ik een log hebben van de commands die geburikers afgelopen week hebben uitgevoert
