@@ -29,16 +29,12 @@ function generateSoundboardView() {
       "type": "plain_text",
       "text": "Close"
     },
-    "submit": {
-      "type": "plain_text",
-      "text": "Submit"
-    },
     "blocks": [
       {
         "type": "section",
         "text": {
           "type": "plain_text",
-          "text": "This is a plain text section block.",
+          "text": "Speel een geluid af op de main dashboard op kantoor",
           "emoji": true
         }
       },
