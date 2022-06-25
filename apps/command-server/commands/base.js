@@ -14,9 +14,12 @@ class Command {
     }
     async trigger(body, context) {
         this.setup(body, context)
-        if (this.name !== this.args[0]) {
-            return false
+
+        if (this.args[0].toLowerCase() !== this.name.toLowerCase()) {
+            return
         }
+
+        // Run the command
         await this.run()
 
         // signal that the command has been processed
