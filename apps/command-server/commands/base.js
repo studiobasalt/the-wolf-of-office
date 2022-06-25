@@ -1,7 +1,7 @@
 // import db from '../../../lib/db.js'
 import appRoot from 'app-root-path'
 import sound from 'sound-play'
-import webclient from '../inc/slackWebClient.js'
+import slackConnector from '../inc/slackWebClient.js'
 
 class Command {
     constructor() {
@@ -47,35 +47,15 @@ class Command {
 
     // send a slack message to the channel
     async say(message, blocks = false, hiddenMessage = false) {
-        // if the message is direct we need to send it to the user
-        let channel = this.body.channel_id
-        const isDirectMessage = this.body.channel_name === 'directmessage'
-        if (isDirectMessage) {
-            channel = this.body.user_id
-        }
-        // select send method based on if the message is hidden or not
-        let sendMethod = hiddenMessage && !isDirectMessage ? webclient.chat.postEphemeral : webclient.chat.postMessage
-        // send the message to the channel
-        try {
-            await sendMethod({
-                channel: channel,
-                text: message,
-                blocks: blocks,
-                hidden: hiddenMessage,
-                user: this.body.user_id
-            })
-        } catch (error) {
-            throw new NotInChannel("Could not send message: " + error)
-        }
+        await slackConnector.say(message, blocks, hiddenMessage)
+    }
 
+    // Open in slack a view with the given blocks
+    async openView(view) {
+       await slackConnector.openView(view)
     }
 }
 
-class NotInChannel extends Error {
-    constructor(message) {
-        super(message)
-        this.name = 'NotInChannelError'
-    }
-}
+
 
 export default Command;
