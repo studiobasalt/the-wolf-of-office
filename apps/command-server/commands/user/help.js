@@ -1,4 +1,5 @@
 import Command from '../base.js'
+import generateHelp from '../../formats/slack-msg/help.js'
 
 class HelpCommand extends Command {
     constructor() {
@@ -8,8 +9,8 @@ class HelpCommand extends Command {
         this.description = 'Help'
     }
     async run() {
-        const text = `Available commands: \n${this.context.map(c => `${c.name} - ${c.description}`).join('\n')}`
-        await this.say(text)
+        const helpBlocks = generateHelp(this.context)
+        await this.say('Help commands for wolf of office', helpBlocks, true)
     }
 }
 
