@@ -44,7 +44,7 @@ class ClassLoader{
     }
 
     async getInteractions(){
-        await this.importFromFolder('interactions/user/')
+        return await this.importFromFolder('interactions/user/')
     }
 }
 

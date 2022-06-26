@@ -12,17 +12,24 @@ class Command {
     async run() {
         throw new Error("Not implemented yet") // Overwrite in extend
     }
-    async trigger(body, context) {
+    async trigger(body, context, skipChecks = false) {
         this.setup(body, context)
 
-        if (this.args[0].toLowerCase() !== this.name.toLowerCase()) {
-            return
+        if (!skipChecks && !this.triggerChecks()) {
+            return false
         }
 
         // Run the command
         await this.run()
 
         // signal that the command has been processed
+        return true
+    }
+    triggerChecks(){
+        // check if the first argument is the command name to be abel to trigger the command
+        if (this.args[0].toLowerCase() !== this.name.toLowerCase()) {
+            return false
+        }
         return true
     }
     setup(body, context) {
@@ -32,7 +39,7 @@ class Command {
     }
     setCommandArgs(rawArgs) {
         // split the raw args into an array
-        this.args = rawArgs.split(' ')
+        this.args = rawArgs?.split(' ')
     }
     hasPremission() {
         return true

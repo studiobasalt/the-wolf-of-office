@@ -22,16 +22,16 @@ function generateMsg(commands) {
             "type": "divider"
         }]
         // if user has premission insert the button
-        if (command.hasPremission() && false) { // enable this if implemented
+        if (command.hasPremission()) { // enable this if implemented
             blocks[1].accessory = {
                 "type": "button",
                 "text": {
                     "type": "plain_text",
-                    "text": "Run",
+                    "text": "Run command",
                     "emoji": true
                 },
-                "value": "click_me_123",
-                "action_id": "button-action"
+                "value": command.name,
+                "action_id": "proxy-command"
             }
         }
         return blocks;
