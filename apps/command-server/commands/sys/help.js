@@ -1,1 +1,0 @@
-// List all posible commands
