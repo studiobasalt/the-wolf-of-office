@@ -4,17 +4,15 @@ import db from "../../../../lib/db/index.js"
 class DashboardModelMain extends BasicBlocks{
     constructor(user_id){
         super()
-        this.setup()
-        this.setBlocks()
         this.user_id = user_id
-        db.init()
     }
 
-    render(){
-       return this.base
+    async render(){
+        return this.base
     }
 
-    setup(){
+    async init(){
+        await db.init()
         this.base = {
             "type": "modal",
             "title": {
@@ -34,17 +32,31 @@ class DashboardModelMain extends BasicBlocks{
             },
             "blocks": []
         }
+        await this.setBlocks()
     }
 
-    setBlocks(){
-        this.base.blocks = [
-            this.getDeviceSetupBlocks(),
-            this.getDevider(),
-            this.getViewButtonBlocks()
-        ]
+    async setBlocks(){
+        await this.setDeviceSetupBlock()
+        
+        this.push(
+            this.getDevider()
+        )
+            
+        await this.setViewButtonBlocks()
     }
 
-    getDeviceSetupBlocks(device){
+    async setDeviceSetupBlock(){
+        const devices = await db.dashboard.device.getAll()
+        // loop each device and push a device block to the stack
+        for (const index in devices) {
+            const device = devices[index]
+            this.push(
+                await this.getDeviceBlock(device)
+            )
+        }
+    }
+
+    async getDeviceBlock(device){
         return {
             "type": "input",
             "element": {
@@ -54,54 +66,70 @@ class DashboardModelMain extends BasicBlocks{
                     "text": "Select options",
                     "emoji": true
                 },
-                "options": [
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "*this is plain_text text*",
-                            "emoji": true
-                        },
-                        "value": "value-0"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "*this is plain_text text*",
-                            "emoji": true
-                        },
-                        "value": "value-1"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "*this is plain_text text*",
-                            "emoji": true
-                        },
-                        "value": "value-2"
-                    }
-                ],
-                // "action_id": "multi_static_select-action"
+                "options": await this.getDeviceOptions(),
+                "initial_options": await this.getActiveDeviceViews(device)
             },
             "label": {
                 "type": "plain_text",
-                "text": "Screen 1",
+                "text": "Device:" + device.name,
                 "emoji": true
             }
         }
     }
 
-    getViewButtonBlocks(){
-        return {
+    async getDeviceOptions(device){
+        const views = await db.dashboard.view.getAll()
+        let options = []
+        for (const index in views) {
+            const view = views[index]
+            options.push(
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": view.name,
+                    },
+                    "value": "view-" + view.id
+                }
+            )
+        }
+        return options
+    }
+
+    async getActiveDeviceViews(device){
+        const views = await db.dashboard.device.joinView(device)
+        let active = []
+        for (const index in views) {
+            const view = views[index]
+            active.push({
+                text: {
+                    "type": "plain_text",
+                    "text": view.name,
+                },
+                value: 'view-' + view.id
+            })
+        }
+        return active
+    }
+
+    async setViewButtonBlocks(){
+        let views = await db.dashboard.view.getAll()
+        views = views.map(view => {
+            return this.getButton(view.name)
+        })
+        this.push({
             "type": "actions",
             "block_id": "dashboard-view-control",
             "elements": [
-                this.getButton('View1'),
-                this.getButton('View2'),
+                ...views,
                 this.getButton('Add view', 'primary', 'create_new_view'),
             ]
-        }
+        })
     }
 
 }
+
+const m = new DashboardModelMain
+await m.init()
+console.log(JSON.stringify(m));
 
 export default DashboardModelMain

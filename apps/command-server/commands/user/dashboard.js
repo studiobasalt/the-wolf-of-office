@@ -9,8 +9,13 @@ class Dasboard extends Base {
     }
 
     async run() {
-        const blocks = new DashboardModelMain(this.user_id).render()
-        await this.openView(blocks)
+        // Render slack blocks
+        const modelBuilder = new DashboardModelMain(this.user_id)
+        await modelBuilder.init()
+        const model = await modelBuilder.render()
+
+        // Open a modal
+        await this.openView(model)
     }
 
 }
