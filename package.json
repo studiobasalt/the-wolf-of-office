@@ -1,15 +1,19 @@
 {
     "scripts": {
+        "test": "vitest",
+        "coverage": "vitest run --coverage",
         "start": "",
         "start:kiosk": "electron ./apps/kiosk-server/main.js",
         "start:command": "node ./apps/command-server/main.js",
         "dev:command": "nodemon ./apps/command-server/main.js"
     },
     "devDependencies": {
+        "c8": "^7.11.3",
         "electron": "^18.0.4",
         "eslint": "^8.18.0",
         "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-plugin-import": "^2.26.0"
+        "eslint-plugin-import": "^2.26.0",
+        "vitest": "^0.16.0"
     },
     "type": "module",
     "dependencies": {
@@ -19,7 +23,7 @@
         "dotenv": "^16.0.0",
         "nodemon": "^2.0.16",
         "sound-play": "^1.1.0",
-        "sqlite": "^4.0.25",
+        "sqlite": "^4.1.1",
         "sqlite3": "^5.0.3"
     }
 }
