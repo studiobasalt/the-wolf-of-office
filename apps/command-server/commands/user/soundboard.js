@@ -1,5 +1,5 @@
 import Base from '../base.js'
-import viewgenerator from '../../formats/views/soundboard.js'
+import viewgenerator from '../../slack-blocks/views/soundboard.js'
 
 class SoundBoard extends Base{
     constructor(){

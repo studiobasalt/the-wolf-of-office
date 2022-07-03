@@ -1,5 +1,5 @@
 import InteractionBase from '../interaction-base.js'
-import DashbaordViewEdit from '../../formats/views/dashboard-view-edit.js'
+import DashbaordViewEdit from '../../slack-blocks/views/dashboard-view-edit.js'
 
 class DashboardOpenView extends InteractionBase{
     constructor(){

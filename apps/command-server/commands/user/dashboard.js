@@ -1,6 +1,6 @@
 import Base from '../base.js'
-import generateHelp from '../../formats/slack-msg/help.js'
-import DashboardModelMain from '../../formats/views/dashboard-view-select.js'
+import generateHelp from '../../slack-blocks/slack-msg/help.js'
+import DashboardModelMain from '../../slack-blocks/views/dashboard-view-select.js'
 
 class Dasboard extends Base {
     constructor() {

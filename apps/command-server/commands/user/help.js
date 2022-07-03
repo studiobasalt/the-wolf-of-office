@@ -1,5 +1,5 @@
 import Command from '../base.js'
-import generateHelp from '../../formats/slack-msg/help.js'
+import generateHelp from '../../slack-blocks/slack-msg/help.js'
 
 class HelpCommand extends Command {
     constructor() {
