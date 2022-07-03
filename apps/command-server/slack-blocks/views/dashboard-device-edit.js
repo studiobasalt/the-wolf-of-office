@@ -1,10 +1,11 @@
 import BasicBlocks from '../BasicBlocks.js'
 
 class DashbaordViewEdit extends BasicBlocks{
-    constructor(){
+    constructor(user_id){
         super()
         this.setup()
         this.setBlocks()
+        this.user_id = user_id
     }
 
     render(){
@@ -16,7 +17,7 @@ class DashbaordViewEdit extends BasicBlocks{
             "type": "modal",
             "title": {
                 "type": "plain_text",
-                "text": "Setup Dashboards",
+                "text": "Setup Dashboards Devices",
                 "emoji": true
             },
             "submit": {
@@ -38,9 +39,6 @@ class DashbaordViewEdit extends BasicBlocks{
         this.push(
             this.getDevider(),
         )
-        this.setViewSection(1)
-        this.setViewSection(2)
-        this.setViewSection(3, true)
     }
 
     setViewSettingBlocks(){

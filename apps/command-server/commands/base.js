@@ -34,6 +34,7 @@ class Command {
     setup(body, context) {
         this.setCommandArgs(body.text)
         this.body = body
+        this.user_id = body.user.id
         this.context = context
     }
     setCommandArgs(rawArgs) {

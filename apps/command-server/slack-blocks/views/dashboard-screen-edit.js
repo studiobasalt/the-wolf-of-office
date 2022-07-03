@@ -1,10 +1,13 @@
 import BasicBlocks from "../BasicBlocks.js"
+import db from "../../../../lib/db.js"
 
 class DashboardModelMain extends BasicBlocks{
-    constructor(){
+    constructor(user_id){
         super()
         this.setup()
         this.setBlocks()
+        this.user_id = user_id
+        db.init()
     }
 
     render(){
@@ -41,7 +44,7 @@ class DashboardModelMain extends BasicBlocks{
         ]
     }
 
-    getDeviceSetupBlocks(){
+    getDeviceSetupBlocks(device){
         return {
             "type": "input",
             "element": {
@@ -77,7 +80,7 @@ class DashboardModelMain extends BasicBlocks{
                         "value": "value-2"
                     }
                 ],
-                "action_id": "multi_static_select-action"
+                // "action_id": "multi_static_select-action"
             },
             "label": {
                 "type": "plain_text",

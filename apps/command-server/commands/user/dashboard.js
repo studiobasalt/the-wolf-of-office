@@ -1,6 +1,5 @@
 import Base from '../base.js'
-import generateHelp from '../../slack-blocks/slack-msg/help.js'
-import DashboardModelMain from '../../slack-blocks/views/dashboard-control.js'
+import DashboardModelMain from '../../slack-blocks/views/dashboard-screen-edit.js'
 
 class Dasboard extends Base {
     constructor() {
@@ -10,7 +9,7 @@ class Dasboard extends Base {
     }
 
     async run() {
-        const blocks = new DashboardModelMain().render()
+        const blocks = new DashboardModelMain(this.user_id).render()
         await this.openView(blocks)
     }
 
