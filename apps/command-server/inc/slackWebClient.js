@@ -33,13 +33,16 @@ class SlackConnector{
     }
 
     // Open in slack a view with the given blocks
-    async openView(view, body) {
+    async openView(view, body, update = false) {
         try {
-            await this.webclient.views.open({
+            const clientMode = update ? this.webclient.views.push : this.webclient.views.open
+            await clientMode({
                 trigger_id: body.trigger_id,
-                view: view
+                response_action: "push",
+                view: view,
             })
         } catch (error) {
+            console.log(error);
             throw new Error("Could not open view: " + error)
         }
     }

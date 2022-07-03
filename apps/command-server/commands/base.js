@@ -8,6 +8,7 @@ class Command {
         this.name = false //Overwrite in extend
         this.capabilitiesLevel = 0 //Overwrite in extend
         this.description = "" // Overwrite in extend
+        this.subCommands = [] // Overwrite in extend - [{name:'', description:''}]
     }
     async run() {
         throw new Error("Not implemented yet") // Overwrite in extend

@@ -5,6 +5,7 @@ import classLoader from '../inc/classLoader.js';
 class BaseInteraction{
     constructor(){
         this.action_id = ""; //Overwrite in extend
+        this.testProperty = 'action_id'; //Overwrite in extend
     }
     run(){
         throw new Error("Not implemented yet") // Overwrite in extend
@@ -26,16 +27,18 @@ class BaseInteraction{
     async setup(body){
         this.body = body
         this.context = await classLoader.commands
-        this.body.channel_id = this.body.channel.id
-        this.body.user_id = this.body.user.id
-        this.body.channel_name = this.body.channel.name
+        this.body.channel_id = this.body.channel?.id
+        this.body.user_id = this.body.user?.id
+        this.body.channel_name = this.body.channel?.name
+
     }
 
     testTrigger(){
         // loop body.actions and match for each as action if action_id is not equal to this.action_id return false
         let actionFound = false;
-        for(let action of this.body.actions){
-            if(action.action_id === this.action_id){
+        for(let index in this.body.actions){
+            const action = this.body.actions[index]
+            if(action[this.testProperty] === this.action_id){
                 actionFound = true;
                 break;
             }
@@ -64,6 +67,10 @@ class BaseInteraction{
 
     async openView(view){
         await slackConnector.openView(view, this.body)
+    }
+
+    async updateView(view){
+        await slackConnector.openView(view, this.body, true)
     }
 
     async play(file) {
