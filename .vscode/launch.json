@@ -12,6 +12,8 @@
                 "<node_internals>/**"
             ],
             "program": "apps/command-server/main.js",
+            "restart": true,
+            "runtimeExecutable": "nodemon"
         }
     ]
 }
