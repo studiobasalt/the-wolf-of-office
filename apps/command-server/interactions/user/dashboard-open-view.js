@@ -4,7 +4,7 @@ import DashbaordViewEdit from '../../slack-blocks/views/dashboard-view-edit.js'
 class DashboardOpenView extends InteractionBase{
     constructor(){
         super()
-        this.action_id = "dashboard-view-buttons";
+        this.action_id = "dashboard-view-control";
         this.testProperty = 'block_id'; //Overwrite in extend
 
     }

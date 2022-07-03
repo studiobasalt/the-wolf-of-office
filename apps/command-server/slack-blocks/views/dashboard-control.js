@@ -90,7 +90,7 @@ class DashboardModelMain extends BasicBlocks{
     getViewButtonBlocks(){
         return {
             "type": "actions",
-            "block_id": "dashboard-view-buttons",
+            "block_id": "dashboard-view-control",
             "elements": [
                 this.getButton('View1'),
                 this.getButton('View2'),

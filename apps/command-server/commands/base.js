@@ -2,13 +2,13 @@
 import appRoot from 'app-root-path'
 import slackConnector from '../inc/slackWebClient.js'
 import playSound from '../inc/soundPlayer.js'
+import generateHelp from '../slack-blocks/slack-msg/help.js'
 
 class Command {
     constructor() {
         this.name = false //Overwrite in extend
         this.capabilitiesLevel = 0 //Overwrite in extend
         this.description = "" // Overwrite in extend
-        this.subCommands = [] // Overwrite in extend - [{name:'', description:''}]
     }
     async run() {
         throw new Error("Not implemented yet") // Overwrite in extend
@@ -59,6 +59,11 @@ class Command {
     // Open in slack a view with the given blocks
     async openView(view) {
        await slackConnector.openView(view, this.body)
+    }
+
+    async help() {
+        const helpBlocks = generateHelp([this])
+        await this.say('Help commands for ' + this.name, helpBlocks, true)    
     }
 }
 
