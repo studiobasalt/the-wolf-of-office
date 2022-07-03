@@ -132,4 +132,6 @@ dmypy.json
 db.json
 teleport.yaml
 node_modules
-sqlite3.db
+db.sqlite
+db.test.sqlite
+coverage
