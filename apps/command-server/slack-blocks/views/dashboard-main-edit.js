@@ -1,5 +1,5 @@
 import BasicBlocks from "../BasicBlocks.js"
-import db from "../../../../lib/db.js"
+import db from "../../../../lib/db/index.js"
 
 class DashboardModelMain extends BasicBlocks{
     constructor(user_id){

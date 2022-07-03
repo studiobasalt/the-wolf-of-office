@@ -1,6 +1,6 @@
 import { SocketModeClient } from '@slack/socket-mode'
 import env from '../../lib/load-env.js'
-import db from '../../lib/db.js'
+import db from '../../lib/db/index.js'
 
 // Import events for the client
 import Interactive from './socket-events/interactive.js'
