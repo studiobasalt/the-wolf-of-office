@@ -1,5 +1,5 @@
 import Base from './base.js'
-import classLoader from '../inc/classLoader.js'
+import classLoader from '../../../lib/classLoader.js'
 
 class Interactive extends Base{
     async init(){

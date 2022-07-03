@@ -1,7 +1,5 @@
-// import db from '../../../lib/db.js'
-import appRoot from 'app-root-path'
-import slackConnector from '../inc/slackWebClient.js'
-import playSound from '../inc/soundPlayer.js'
+import slackConnector from '../../../lib/slackWebClient.js'
+import playSound from '../../../lib/soundPlayer.js'
 import generateHelp from '../slack-blocks/slack-msg/help.js'
 
 class Command {

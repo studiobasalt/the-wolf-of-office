@@ -1,6 +1,6 @@
-import slackConnector from '../inc/slackWebClient.js'
-import playSound from '../inc/soundPlayer.js'
-import classLoader from '../inc/classLoader.js';
+import slackConnector from '../../../lib/slackWebClient.js'
+import playSound from '../../../lib/soundPlayer.js'
+import classLoader from '../../../lib/classLoader.js';
 
 class BaseInteraction{
     constructor(){
