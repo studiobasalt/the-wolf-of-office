@@ -1,5 +1,5 @@
 import Base from '../base.js'
-import DashboardModelMain from '../../slack-blocks/views/dashboard-main-edit.js'
+import DashboardModelMain from '../../slack-blocks/views/dashboard-device-edit.js'
 
 class Dasboard extends Base {
     constructor() {

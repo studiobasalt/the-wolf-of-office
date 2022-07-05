@@ -1,11 +1,12 @@
 import slackConnector from '../../../lib/slackWebClient.js'
 import playSound from '../../../lib/soundPlayer.js'
 import classLoader from '../../../lib/classLoader.js';
+import db from '../../../lib/db/index.js';
 
 class BaseInteraction{
     constructor(){
-        this.action_id = ""; //Overwrite in extend
-        this.testProperty = 'action_id'; //Overwrite in extend
+        this.action_id = false; //Overwrite in extend
+        this.db = db
     }
     run(){
         throw new Error("Not implemented yet") // Overwrite in extend
@@ -16,6 +17,8 @@ class BaseInteraction{
         if(!this.testTrigger()){
             return false
         }
+
+        await db.init()
 
         this.setParseState()        
         // run the command
@@ -38,7 +41,7 @@ class BaseInteraction{
         let actionFound = false;
         for(let index in this.body.actions){
             const action = this.body.actions[index]
-            if(action[this.testProperty] === this.action_id){
+            if(action['action_id'] === this.action_id){
                 actionFound = true;
                 break;
             }
@@ -48,6 +51,11 @@ class BaseInteraction{
         }
         return true
     }
+
+    matchViewSubmission(callback_id){
+        return this.body.type === 'view_submission' && this.body.view.callback_id === callback_id
+    }
+
 
     // parse all values in body.state
     setParseState(){

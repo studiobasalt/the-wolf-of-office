@@ -15,6 +15,7 @@ class DashboardModelMain extends BasicBlocks{
         await db.init()
         this.base = {
             "type": "modal",
+            "callback_id": "dashboard-device-submission",
             "title": {
                 "type": "plain_text",
                 "text": "Setup Dashboards",
@@ -61,6 +62,7 @@ class DashboardModelMain extends BasicBlocks{
             "type": "input",
             "element": {
                 "type": "multi_static_select",
+                "action_id": "device-" + device.id,
                 "placeholder": {
                     "type": "plain_text",
                     "text": "Select options",
@@ -80,6 +82,15 @@ class DashboardModelMain extends BasicBlocks{
     async getDeviceOptions(device){
         const views = await db.dashboard.view.getAll()
         let options = []
+        // add Default option
+        options.push({
+            "text": {
+                "type": "plain_text",
+                "text": "Empty screen",
+                "emoji": true
+            },
+            "value": "view-empty"
+        })
         for (const index in views) {
             const view = views[index]
             options.push(
@@ -108,6 +119,17 @@ class DashboardModelMain extends BasicBlocks{
                 value: 'view-' + view.id
             })
         }
+        // if active empty push empty option
+        if(active.length === 0){
+            active.push({
+                text: {
+                    "type": "plain_text",
+                    "text": "Empty screen",
+                    "emoji": true
+                },
+                value: "view-empty"
+            })
+        }
         return active
     }
 
@@ -127,9 +149,5 @@ class DashboardModelMain extends BasicBlocks{
     }
 
 }
-
-const m = new DashboardModelMain
-await m.init()
-console.log(JSON.stringify(m));
 
 export default DashboardModelMain
