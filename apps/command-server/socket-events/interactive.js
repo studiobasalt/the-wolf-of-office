@@ -9,7 +9,6 @@ class Interactive extends Base{
         // listen to interactive events
         this.socket.on('interactive', async ({ body, ack }) => {
             try {
-                this.log(body)
                 await this.processInteractions(body)
             } catch (e) {
                 console.log(e);
@@ -25,10 +24,6 @@ class Interactive extends Base{
             const interaction = this.interactions[index]
             await interaction.trigger(body)
         }
-    }
-
-    async log(body){
-        console.log("Interaction by: ", body.user.name, " - interact: ", body.actions[0].action_id);
     }
 }
 
