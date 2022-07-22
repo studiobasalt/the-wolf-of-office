@@ -4,16 +4,17 @@
         "coverage": "vitest run --coverage",
         "start": "",
         "start:kiosk": "electron ./apps/kiosk-server/main.js",
+        "dev:kiosk": "nodemon --watch . --exec 'electron ./apps/kiosk-server/main.js'",
         "start:command": "node ./apps/command-server/main.js",
         "dev:command": "nodemon ./apps/command-server/main.js"
     },
     "devDependencies": {
         "c8": "^7.11.3",
-        "electron": "^18.0.4",
+        "electron": "^18.3.5",
         "eslint": "^8.18.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-plugin-import": "^2.26.0",
-        "vitest": "^0.16.0"
+        "vitest": "^0.18.1"
     },
     "type": "module",
     "dependencies": {
