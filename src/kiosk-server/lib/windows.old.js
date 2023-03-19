@@ -178,3 +178,35 @@ module.exports = new Window();
 //     }, 10);
 
 // }
+
+    //render index.html in a new BrowserWindow
+    // const win = new BrowserWindow({
+    //     // fullscreen: true,
+    //     show: true,
+    //     skipTaskbar: true,
+    //     resizable: false,
+    //     useContentSize: true,
+    //     backgroundColor: '#502FE9',
+    //     hasShadow: false,
+    //     webPreferences: {
+    //         nodeIntegration: true,
+    //         webSecurity: false,
+    //         allowRunningInsecureContent: true,
+    //         allowDisplayingInsecureContent: true
+    //     }
+    //     // kiosk: true,
+    // })
+    // const view = new BrowserView()
+    // win.addBrowserView(view)
+    // view.setBounds({
+    //     x: 0,
+    //     y: 0,
+    //     // 100% of the window
+    //     width: win.getBounds().width,
+    //     height: win.getBounds().height
+    // })
+    // view.setAutoResize({
+    //     width: true,
+    //     height: true
+    // });
+    // view.webContents.loadFile('./screens/index.html')

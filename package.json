@@ -1,30 +1,22 @@
 {
-    "scripts": {
-        "test": "vitest",
-        "coverage": "vitest run --coverage",
-        "start": "",
-        "start:kiosk": "electron ./apps/kiosk-server/main.js",
-        "dev:kiosk": "nodemon --watch . --exec 'electron ./apps/kiosk-server/main.js'",
-        "start:command": "node ./apps/command-server/main.js",
-        "dev:command": "nodemon ./apps/command-server/main.js"
-    },
-    "devDependencies": {
-        "c8": "^7.11.3",
-        "electron": "^18.3.5",
-        "eslint": "^8.18.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-plugin-import": "^2.26.0",
-        "vitest": "^0.18.1"
-    },
-    "type": "module",
-    "dependencies": {
-        "@slack/socket-mode": "^1.2.0",
-        "@slack/web-api": "^6.7.1",
-        "app-root-path": "^3.0.0",
-        "dotenv": "^16.0.0",
-        "nodemon": "^2.0.16",
-        "sound-play": "^1.1.0",
-        "sqlite": "^4.1.1",
-        "sqlite3": "^5.0.3"
-    }
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "start": "electron ./main.js",
+    "start:kiosk": "electron ./src/kiosk-server/main.js",
+    "dev:kiosk": "nodemon --watch . --exec 'electron ./src/kiosk-server/main.js'",
+    "start:command": "node ./apps/command-server/main.js",
+    "dev:command": "nodemon ./apps/command-server/main.js",
+    "rebuild": "./node_modules/.bin/electron-rebuild",
+    "deploy": "node ./config/firebase-deploy.js"
+  },
+  "devDependencies": {
+    "electron": "^23.1.4"
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "firebase": "^9.18.0",
+    "nodemon": "^2.0.21"
+  }
 }

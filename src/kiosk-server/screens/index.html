@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            background: #502FE9;
+            font-family: sans-serif;
+            color: #30189b;
+        }
+        body{
+            padding: 0 40px;
+        }
+        h1,h5{
+            margin: 0;
+            padding: 0;
+        }
+        main{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        img{
+            max-width: 500px;
+            margin-bottom: 70px;
+        }
+        footer{
+            color: #fff;
+            position: absolute;
+            bottom: 20px;
+            opacity: .5;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <img src="./logo.svg" alt="">
+        <h1>No screens active</h1>
+        <!-- <h5>Run '/wolf dashboard' in slack and setup a screen</h5> -->
+        <h5>Electron App with Firebase Authentication</h5>
+        <form>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <br>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+          <br>
+          <button type="button" id="register-btn">Register</button>
+          <button type="button" id="login-btn">Login</button>
+        </form>
+
+        <script src="preload.js"></script>
+        <script>
+      
+            const registerBtn = document.getElementById('register-btn');
+            registerBtn.addEventListener('click', () => {
+                console.log('register');
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+              window.ipcRenderer.send('register', email, password);
+            });
+      
+            const loginBtn = document.getElementById('login-btn');
+            loginBtn.addEventListener('click', () => {
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+              window.ipcRenderer.send('login', email, password);
+            });
+      
+            // Handle successful registration
+            window.ipcRenderer.on('registration-successful', (event, user) => {
+              console.log('Registration successful:', user);
+              alert('Registration successful!');
+            });
+      
+            // Handle registration error
+            window.ipcRenderer.on('registration-error', (event, error) => {
+              console.error('Registration error:', error);
+              alert('Registration error: ' + error.message);
+            });
+      
+            // Handle successful login
+            window.ipcRenderer.on('login-successful', (event, user) => {
+              console.log('Login successful:', user);
+              alert('Login successful!');
+            });
+      
+            // Handle login error
+            window.ipcRenderer.on('login-error', (event, error) => {
+              console.error('Login error:', error);
+              alert('Login error: ' + error.message);
+            });
+          </script>
+    
+    </main>
+    <footer>
+        &copy; volcano.nl - Devicename: <span id="devicename">??</span>
+    </footer>
+</body>
+</html>
