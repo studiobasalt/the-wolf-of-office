@@ -134,3 +134,4 @@ teleport.yaml
 node_modules
 *.sqlite
 coverage
+.svelte-kit
