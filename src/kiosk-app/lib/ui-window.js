@@ -1,9 +1,8 @@
-const { BrowserWindow, app } = require('electron');
+const { BrowserWindow, app, ipcMain } = require('electron');
 const process = require('process');
 const path = require('path');
 const serve = require('electron-serve');
-
-require('./ipcEvents');
+const globals = require('./globals');
 
 let mainWindow = new BrowserWindow({
   width: 800,
@@ -26,7 +25,14 @@ if (!app.isPackaged) {
   loadURL(mainWindow);
 }
 
+// Handle log events
+ipcMain.on(globals.events.log, (event, message) => {
+  console.log(message);
+});
+
 // Open the DevTools in development mode
 if (process.env.NODE_ENV === 'development') {
   // mainWindow.webContents.openDevTools();
 }
+
+module.exports = mainWindow;
