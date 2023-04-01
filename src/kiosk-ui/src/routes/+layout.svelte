@@ -11,7 +11,6 @@
 
 <style lang="scss">
   :global {
-    @import "/node_modules/normalize.css/normalize.css";
     @import "../global.scss";
   }
 

@@ -13,7 +13,6 @@
     "concurrently": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "normalize.css": "^8.0.1",
     "prettier": "^2.8.7",
     "sass": "^1.60.0",
     "scss": "^0.2.4",
