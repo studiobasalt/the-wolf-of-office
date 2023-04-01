@@ -10,9 +10,10 @@
 </script>
 
 <style lang="scss">
-  @import "/node_modules/normalize.css/normalize.css";
-  @import "../global.scss";
-
+  :global {
+    @import "/node_modules/normalize.css/normalize.css";
+    @import "../global.scss";
+  }
 
   main{
     height: 100vh;
