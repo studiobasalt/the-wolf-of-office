@@ -1,0 +1,67 @@
+html, body{
+    background: #502FE9;
+    font-family: sans-serif;
+    color: #30189b;
+}
+body{
+    padding: 0 40px;
+}
+
+h1,h5,p{
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for all input fields */
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 2px solid transparent;
+}
+
+/* Style for input fields with focus */
+input:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Style for form labels */
+label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Style for form buttons */
+button {
+  background-color: dodgerblue;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 49%;
+  margin: 0;
+  &:hover {
+    background-color: #0b7dda;
+}
+}
+
+form{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    .row{
+        display: flex;
+        width: 100%;
+    }
+
+}
