@@ -1,22 +1,30 @@
 {
   "scripts": {
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "start": "electron ./main.js",
-    "start:kiosk": "electron ./src/kiosk-server/main.js",
-    "dev:kiosk": "nodemon --watch . --exec 'electron ./src/kiosk-server/main.js'",
-    "start:command": "node ./apps/command-server/main.js",
-    "dev:command": "nodemon ./apps/command-server/main.js",
-    "rebuild": "./node_modules/.bin/electron-rebuild",
-    "deploy": "node ./config/firebase-deploy.js"
+    "dev:kiosk-app": "nodemon --watch . --exec 'electron ./src/kiosk-app/main.js'",
+    "dev:kiosk-ui": "vite dev",
+    "dev": "concurrently \"npm run dev:kiosk-app\" \"npm run dev:kiosk-ui\"",
+    "build:kiosk-ui": "vite build"
   },
   "devDependencies": {
-    "electron": "^23.1.4"
+    "@sveltejs/adapter-static": "^2.0.1",
+    "@sveltejs/kit": "^1.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "concurrently": "^8.0.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.8.7",
+    "svelte": "^3.54.0",
+    "vite": "^4.2.0"
   },
   "type": "module",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "firebase": "^9.18.0",
-    "nodemon": "^2.0.21"
+    "electron": "^23.2.1",
+    "electron-serve": "^1.1.0",
+    "eslint": "^8.37.0",
+    "firebase": "^9.19.0",
+    "nodemon": "^2.0.22"
   }
 }
