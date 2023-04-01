@@ -1,6 +1,17 @@
 <script>
     export let width = 400;
-    export let margin = 40;
+    export let margin = 80;
+    export let fixed = false;
+
+    if(fixed) margin = 0;
 </script>
 
-<img src="./logo.svg" alt="" style="max-width: {width}px; margin-bottom: {margin}px;" />
+<style>
+    .fixed{
+        position: fixed;
+        top: 50px;
+        opacity: .3;
+    }
+</style>
+
+<img src="./logo.svg" class:fixed alt="" style="max-width: {width}px; margin-bottom: {margin}px;" />

@@ -13,7 +13,7 @@
     }
 </style>
 
-<Logo width=150 margin=80 />
+<Logo width=150 margin=80 fixed=true />
 
 <h1>Login / Register</h1>
 <br>
