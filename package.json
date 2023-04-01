@@ -25,6 +25,7 @@
     "dotenv": "^16.0.3",
     "electron": "^23.2.1",
     "electron-serve": "^1.1.0",
+    "electron-store": "^8.1.0",
     "eslint": "^8.37.0",
     "firebase": "^9.19.0",
     "nodemon": "^2.0.22",
