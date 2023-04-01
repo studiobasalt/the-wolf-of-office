@@ -1,5 +1,12 @@
 <script>
   import Footer from "$lib/footer.svelte";
+  import { onMount } from "svelte";
+  import { appWindow } from "$lib/stores";
+
+  onMount(() => {
+    if (typeof window === 'undefined') return;
+    appWindow.set(window);
+  });
 </script>
 
 <style lang="scss">
