@@ -1,5 +1,25 @@
 <script>
-  import Logo from "../lib/logo.svelte";
+	import { userIsLoggedIn } from '$lib/auth';
+  import Logo from "$lib/logo.svelte";
+  import { onMount } from "svelte";
+
+  // Count down to take redirect to next page
+  let timeLeft = 5;
+  onMount(() => {
+    const interval = setInterval(() => {
+      timeLeft -= 1;
+      if (timeLeft === 0) {
+        clearInterval(interval);
+        handleAction();
+      }
+    }, 1000);
+  });
+
+  function handleAction(){
+    if(!$userIsLoggedIn) window.location.href = "/auth";
+    else window.location.href = "/kiosk";
+  }
+
 </script>
 
 <Logo />
@@ -9,5 +29,5 @@
     We are booting up... or your getting loggedin... or something like that.
 </p>
 <h3>
-  action in {1} seconds
+  action in {timeLeft} seconds
 </h3>

@@ -1,9 +1,9 @@
-<style lang="sass">
-    footer{
+<style lang="scss">
+    footer {
         color: #fff;
         position: absolute;
         bottom: 20px;
-        opacity: .5;
+        opacityay: .5;
         width: 100%;
         text-align: center;
         font-size: 11px;
