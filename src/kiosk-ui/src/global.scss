@@ -51,7 +51,6 @@ button {
   transition: all 0.3s ease;
   width: 50%;
   margin: 0;
-  flex: 1;
   &:hover {
     background-color: #0b7dda;
 }
@@ -69,4 +68,30 @@ form{
       position: relative;
       gap: 15px;
     }
+}
+
+/* Global styling for HTML table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+/* Styling for table headers */
+th {
+  background-color: #30189b;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Styling for table cells */
+td {
+  padding: 10px;
+}
+
+/* Styling for table alternate rows */
+tr:nth-child(even) {
+  background-color: #f8f8f8;
 }

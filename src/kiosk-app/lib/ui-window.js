@@ -10,7 +10,8 @@ let mainWindow = new BrowserWindow({
   webPreferences: {
     nodeIntegration: true,
     enableRemoteModule: true,
-    preload: path.join(__dirname, 'ipcEmbed.js')
+    preload: path.join(__dirname, 'ipcEmbed.js'),
+    webSecurity: false
   }
 });
 
@@ -34,5 +35,10 @@ ipcMain.on(globals.events.log, (event, message) => {
 if (process.env.NODE_ENV === 'development') {
   // mainWindow.webContents.openDevTools();
 }
+
+// Close window on event kioskStart
+ipcMain.on(globals.events.kioskStart, (event) => {
+  mainWindow.close();
+});
 
 module.exports = mainWindow;

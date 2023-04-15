@@ -1,9 +1,14 @@
+<script>
+    import { logoutUser } from '$lib/auth.js';
+    import { goto } from '$app/navigation';
+</script>
+
 <style lang="scss">
     footer {
         color: #fff;
-        position: absolute;
+        position: fixed;
         bottom: 20px;
-        opacityay: .5;
+        opacity: .5;
         width: 100%;
         text-align: center;
         font-size: 11px;
