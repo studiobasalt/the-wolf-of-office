@@ -1,6 +1,6 @@
-<script>
-    let email = 'matthijs@volcano.nl'
-    let isAdmin = false
+<script lang="ts">
+    import { userData, user } from '@stores/auth';
+
 </script>
 
 <h1>My account</h1>
@@ -9,22 +9,12 @@
 <br>
 <form>
     <p>
-        Is admin account: <b>{isAdmin ? 'Yes' : 'No'}</b> <br>
-        Validated email: <b>{false ? 'Yes' : 'No'}</b> <br>
-        Creation date: <b>2021-05-12</b> <br>
+        Is admin account: <b>{$userData.isAdmin ? 'Yes' : 'No'}</b> <br>
+        Validated email: <b>{$user.emailVerified ? 'Yes' : 'No'}</b> <br>
+        Creation date: <b>{new Date(parseInt($user.metadata["createdAt"])).toLocaleDateString()}</b> <br>
     </p>
-    <h2>Reset password</h2>
     <div>
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email" disabled value={email} />
+        <label for="email">Your email:</label>
+        <input type="email" placeholder="Email" disabled value={$user.email} />
     </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" />
-    </div>
-    <div>
-        <label for="password">Confirm password</label>
-        <input type="password" placeholder="Confirm password" />
-    </div>
-    <button type="submit">Reset password</button>
 </form>
