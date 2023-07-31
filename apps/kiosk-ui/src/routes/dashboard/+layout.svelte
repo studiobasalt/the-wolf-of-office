@@ -3,7 +3,32 @@
     import CenterContainer from "$lib/centerContainer.svelte";
     import { user } from "@stores/auth";
     import { auth } from "@stores/firebase";
+    import { goto } from "$app/navigation";
+
+    function handleLogout() {
+        auth.signOut();
+        goto("/");
+    }
 </script>
+
+<Logo fixed={true} width={100} opacity={1} alignLeft={true} />
+
+<div>
+    <a href="/dashboard">
+        Dashboard
+    </a>
+    
+    {#if $user}
+        <a href=void:0 on:click={handleLogout}>
+        Logout
+        </a>
+    {/if}
+    
+</div>
+
+<CenterContainer>
+    <slot />
+</CenterContainer>
 
 <style lang="scss">
     div {
@@ -28,23 +53,3 @@
         }
     }
 </style>
-
-<Logo fixed={true} width={100} opacity={1} alignLeft={true} />
-
-
-<div>
-    <a href="/dashboard">
-        Dashboard
-    </a>
-    
-    {#if $user}
-        <a href=void:0 on:click={auth.signOut}>
-        Logout
-        </a>
-    {/if}
-    
-</div>
-
-<CenterContainer>
-    <slot />
-</CenterContainer>
