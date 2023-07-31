@@ -75,7 +75,8 @@
         updateDevice(device);
     }
 
-    function updateViewTimeout(index: number, timeout: number) {
+    function updateViewTimeout(index: number, timeout: string|number) {
+        timeout = Number(timeout);
         let device = $deviceStore.find((device) => device.id === curretDeviceId);
         let views = device.views;
         views[index].timeout = timeout;
