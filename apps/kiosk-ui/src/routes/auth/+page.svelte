@@ -1,12 +1,13 @@
 <script>
   import Logo from "$lib/logo.svelte";
   import Form from "./form.svelte";
-  import { user } from "@stores/auth";
   import CenterContainer from "$lib/centerContainer.svelte";
+  import { user } from "@stores/auth";
+  import { goto } from "$app/navigation";
 
-  user.subscribe((value) => {
-    if (value) window.location.href = "/dashboard";
-  });
+  $: if ($user) {
+    goto("/dashboard");
+  }
 </script>
 
 
