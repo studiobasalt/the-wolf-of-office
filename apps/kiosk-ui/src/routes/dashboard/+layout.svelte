@@ -1,13 +1,8 @@
-<script>
+<script lang="ts">
     import Logo from "$lib/logo.svelte";
     import CenterContainer from "$lib/centerContainer.svelte";
-    import { userIsLoggedIn, logoutUser } from '$lib/auth';
-
-    function logout(){
-        logoutUser();
-        goto('/auth');
-    }
-
+    import { user } from "@stores/auth";
+    import { auth } from "@stores/firebase";
 </script>
 
 <style lang="scss">
@@ -34,7 +29,7 @@
     }
 </style>
 
-<Logo fixed=true width=100 opacity=1 alignLeft=true />
+<Logo fixed={true} width={100} opacity={1} alignLeft={true} />
 
 
 <div>
@@ -42,8 +37,8 @@
         Dashboard
     </a>
     
-    {#if $userIsLoggedIn}
-        <a href=void:0 on:click={logout}>
+    {#if $user}
+        <a href=void:0 on:click={auth.signOut}>
         Logout
         </a>
     {/if}
