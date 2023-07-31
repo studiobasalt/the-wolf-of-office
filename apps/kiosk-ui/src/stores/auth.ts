@@ -1,16 +1,17 @@
 import { writable } from 'svelte/store';
 import { auth, db } from '@stores/firebase';
 import { onSnapshot, doc } from 'firebase/firestore';
+import type { User } from 'firebase/auth';
 
 type UserData = {
   isUser: boolean;
   isAdmin?: boolean;
 }
 
-export const user = writable(null);
+export const user = writable<User | null>(null);
 export const userData = writable<UserData>({ isUser: false });
 
-auth.onAuthStateChanged((userCredential) => {
+auth.onAuthStateChanged((userCredential: User | null) => {
   user.set(userCredential);
   if (!userCredential) return;
   const { uid } = userCredential;
