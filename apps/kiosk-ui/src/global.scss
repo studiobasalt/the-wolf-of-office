@@ -24,6 +24,9 @@ input {
   background-color: #f8f8f8;
   font-size: 16px;
   border: 2px solid transparent;
+  &[type="text"], &[type="number"]{
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+  }
 }
 
 /* Style for input fields with focus */

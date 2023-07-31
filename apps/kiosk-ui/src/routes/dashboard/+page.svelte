@@ -20,7 +20,7 @@
         {
             title: 'Device Settings',
             icon: '/device.svg',
-            link: '/dashboard/this-device'
+            link: '/dashboard/devices'
         },
         {
             title: 'Play Kiosk',
