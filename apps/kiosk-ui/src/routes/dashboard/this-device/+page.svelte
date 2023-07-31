@@ -1,6 +1,6 @@
 <script>
-    import { deviceStore, currentDeviceId, registerDevice, removeViewFromDevice, removeDevice } from '$lib/deviceStore';
-    import { viewStore } from '$lib/viewStore';
+    // import { deviceStore, currentDeviceId, registerDevice, removeViewFromDevice, removeDevice } from '$lib/deviceStore';
+    // import { viewStore } from '$lib/viewStore';
 
     let deviceData = null
     $: deviceData = $deviceStore?.find(device => device.id === $currentDeviceId);

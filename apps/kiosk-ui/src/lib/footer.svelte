@@ -1,8 +1,3 @@
-<script>
-    import { logoutUser } from '$lib/auth.js';
-    import { goto } from '$app/navigation';
-</script>
-
 <style lang="scss">
     footer {
         color: #fff;

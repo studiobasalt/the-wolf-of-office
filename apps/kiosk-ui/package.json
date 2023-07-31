@@ -1,0 +1,31 @@
+{
+  "name": "lava-core-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "node build/index.js",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^1.3.1",
+    "@sveltejs/kit": "^1.22.3",
+    "svelte": "^4.1.1",
+    "vite": "^4.4.7"
+  },
+  "dependencies": {
+    "@poppanator/sveltekit-svg": "^4.0.0",
+    "@types/qs": "^6.9.7",
+    "firebase": "^10.1.0",
+    "imagetools-core": "^4.0.4",
+    "qs": "^6.11.2",
+    "sass": "^1.64.1",
+    "sitemap": "^7.1.1",
+    "svelte-check": "^3.4.6",
+    "svelte-meta-tags": "^2.8.0",
+    "svelte-preprocess": "^5.0.4",
+    "svgo": "^3.0.2",
+    "vite-imagetools": "^5.0.6"
+  }
+}
