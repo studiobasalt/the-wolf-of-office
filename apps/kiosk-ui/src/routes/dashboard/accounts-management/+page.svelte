@@ -8,7 +8,7 @@
   let users = data.users
 
   onDestroy(() => {
-    data?.unsubscribe();
+    if (typeof data.unsubscribe === "function") data.unsubscribe();
   });
 </script>
 
