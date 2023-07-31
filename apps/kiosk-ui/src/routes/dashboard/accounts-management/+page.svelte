@@ -1,5 +1,15 @@
-<script>
+<script lang="ts">
   import AccountRow from "./accountRow.svelte";
+  import { userData } from "@stores/auth";
+  import { onDestroy } from "svelte";
+  
+  export let data;
+
+  let users = data.users
+
+  onDestroy(() => {
+    data?.unsubscribe();
+  });
 </script>
 
 <style lang="scss">
@@ -17,10 +27,12 @@
 <br>
 
 
-{#if false }
+{#if $userData.isAdmin }
+
 <main>
-    <AccountRow id="1" email="matthijs@volcano.nl" isAdmin={true} hasAccess={true} isSelf={true} saveChanges={() => {}} />
-    <AccountRow id="2" email="test@volcano.nl" isAdmin={false} hasAccess={true} isSelf={false} saveChanges={() => {}} />
+      {#each $users as user}
+        <AccountRow user={user} dataStore={users} />
+      {/each}
 </main>
 
 {:else}

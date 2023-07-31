@@ -3,9 +3,13 @@ import { auth, db } from '@stores/firebase';
 import { onSnapshot, doc } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
 
-type UserData = {
+export type UserData = {
+  email?: string;
   isUser: boolean;
   isAdmin?: boolean;
+  hasAccess?: boolean;
+  isSelf?: boolean;
+  id?: string;
 }
 
 export const user = writable<User | null>(null);
@@ -17,10 +21,14 @@ auth.onAuthStateChanged((userCredential: User | null) => {
   const { uid } = userCredential;
   onSnapshot(doc(db, 'users', uid), (doc) => {
     if (!doc.exists) return;  
-    const { isAdmin } = doc.data();
+    const data = doc.data();
     userData.set({ 
+      id: uid,
+      email: data?.email ? data.email : '',
       isUser: true, 
-      isAdmin
+      isAdmin: data?.isAdmin ? data.isAdmin : false,
+      hasAccess: data?.hasAccess ? data.hasAccess : false,
+      isSelf: true
     });
   })
 });

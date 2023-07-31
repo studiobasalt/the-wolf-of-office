@@ -1,21 +1,43 @@
-<script>
-    export let id = "";
-    export let email = "";
-    export let isAdmin = false;
-    export let hasAccess = false;
-    export let isSelf = false;
-    export let saveChanges = () => {};
+<script lang="ts">
+    import type { UserData } from "@stores/auth";
+    import { writable } from "svelte/store";
+
+    export let user: UserData;
+    export let dataStore = writable<UserData[]>();
+
+    let form;
 
     function inputChange() {
-        saveChanges(id, isAdmin, hasAccess);
+        dataStore.update((users) => {
+            const index = users.findIndex((u) => u.id === user.id);
+            user.isAdmin = form.admin.checked;
+            user.hasAccess = form.hasAccess.checked;
+            users[index] = user;
+            return users;
+        });
     }
 </script>
 
+<form class="account-row" bind:this={form}>
+    <p class="email">
+        {user.email}
+    </p>
+    <div>
+        <label for="admin">Is Admin</label>
+        <input type="checkbox" id="admin" name="admin" checked={user.isAdmin} disabled={user.isSelf} on:change={inputChange}>
+    </div>
+    <div>
+        <label for="hasAccess">Has access</label>
+        <input type="checkbox" id="hasAccess" name="hasAccess" checked={user.hasAccess} disabled={user.isSelf} on:change={inputChange}>
+    </div>
+</form>
+
 <style lang="scss">
     .account-row {
+      flex-direction: row;
+      max-width: auto;
       padding: 20px 30px;
       display: flex;
-      width: 100%;
       align-items: center;
       justify-content: center;
       background-color: #f2f2f2;
@@ -28,17 +50,3 @@
       transition: all 0.2s ease-in-out;
     }
 </style>
-
-<div class="account-row">
-    <p class="email">
-        {email}
-    </p>
-    <div>
-        <label for="admin">Is Admin</label>
-        <input type="checkbox" id="admin" name="admin" bind:checked={isAdmin} disabled={isSelf} on:change={inputChange}>
-    </div>
-    <div>
-        <label for="hasAccess">Has access</label>
-        <input type="checkbox" id="hasAccess" name="admin" bind:checked={hasAccess} disabled={isSelf} on:change={inputChange}>
-    </div>
-</div>
