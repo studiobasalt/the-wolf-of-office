@@ -18,9 +18,14 @@
     async function handleRegister() {
       try {
         await createUserWithEmailAndPassword(auth, form.email.value, form.password.value);
-        await setDoc(doc(db, "users", auth.currentUser.uid), {
-          isUser: true
-        })
+        try {
+          await setDoc(doc(db, "users", auth.currentUser.uid), {
+            isUser: true,
+            email: form.email.value,
+          })
+        } catch (error) {
+          alert(error.message)
+        }
       } catch (error) {
         formError = error.message
       }
