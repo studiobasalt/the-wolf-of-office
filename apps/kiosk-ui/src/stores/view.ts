@@ -30,6 +30,42 @@ export function subscribeViews() {
     });
 }
 
+export function createView(name: string) {
+    const view: View = {
+        name,
+    };
+    viewsStore.update(d => [...d, view]);
+}
+
+export function renameView(id: string, name: string) {
+    const view = getView(id);
+    view.name = name;
+    viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
+}
+
+export function deleteView(id: string) {
+    deleteDoc(doc(db, 'views', id));
+}
+
+export function createSection(id: string, section: ViewSection) {
+    const view = getView(id);
+    view.sections = view.sections || [];
+    view.sections.push(section);
+    viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
+}
+
+export function updateSection(id: string, index: number, section: ViewSection) {
+    const view = getView(id);
+    view.sections[index] = section;
+    viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
+}
+
+export function removeSection(id: string, index: number) {
+    const view = getView(id);
+    view.sections.splice(index, 1);
+    viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
+}
+
 export function getView(id: string) {
     return get(viewsStore).find(d => d.id === id);
 }

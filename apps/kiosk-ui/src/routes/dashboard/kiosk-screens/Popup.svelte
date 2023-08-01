@@ -1,88 +1,61 @@
-<script>
-	import { viewStore } from '$lib/viewStore';
-  import { popupStore } from './popupStore';
+<script lang="ts">
+	export let submit: (section: ViewSection) => void;
+  export let cancel: () => void;
 
-  function handleCancel() {
-    sectionData = createNewSectionObject();
-    popupStore.update(store => {
-      store.show = false;
-      return store;
-    });
+  export let sectionData: ViewSection
+
+  $: sectionData = sectionData || {
+    name: '',
+    url: '',
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    zoom: 100,
+    refreshInterval: 0
   }
 
-  let sectionData = createNewSectionObject();
-
-  function createNewSectionObject(){
-    return {
-      name: '',
-      url: '',
-      xPosition: 0,
-      yPosition: 0,
-      height: 0,
-      width: 0,
-      refreshInterval: null,
+  function urlValid(url: string) {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
-
-  $: sectionData = $viewStore?.find(view => view.id === $popupStore.view)?.sections?.find(section => section.id === $popupStore.section) ?? sectionData;
-
-  function handleSave() {
-    popupStore.update(store => {
-      store.show = false;
-      return store;
-    });
-
-    viewStore.update(store => {
-      const view = store.find(view => view.id === $popupStore.view);
-      const section = view.sections.find(section => section.id === $popupStore.section) ?? {};
-      if (!section.id) {
-        section.id = Math.random().toString(36).substr(2, 9);
-        view.sections.push(section);
-      }
-      section.name = sectionData.name;
-      section.url = sectionData.url;
-      section.xPosition = sectionData.xPosition;
-      section.yPosition = sectionData.yPosition;
-      section.height = sectionData.height;
-      section.width = sectionData.width;
-      section.refreshInterval = sectionData.refreshInterval;
-      return store;
-    });
-
-    sectionData = createNewSectionObject();
-
-  }
-
-
+  
 </script>
 
 <!-- Popup.svelte -->
-{#if $popupStore.show}
 <div class="popup">
     <div id="view-section-form">
       <h3>View Section Form</h3>
       <label for="section-name">Name:</label>
       <input type="text" id="section-name" name="section-name" bind:value={sectionData.name}><br>
       <label for="section-url">URL:</label>
-      <input type="text" id="section-url" name="section-url" bind:value={sectionData.url}><br>
-      <label for="section-position">Position X, Y, height, width:</label>
+      <input type="text" id="section-url" name="section-url" bind:value={sectionData.url}>
+      <br>
+      <label for="section-position">Position X, Y, height, width: (in percentages of the screen)</label>
       <div style="display:flex; gap: 10px">
-        <input type="number" id="section-xpos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.xPosition}><br>
-        <input type="number" id="section-ypos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.yPosition}><br>
+        <input type="number" id="section-xpos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.x}><br>
+        <input type="number" id="section-ypos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.y}><br>
         <input type="number" id="section-width" name="section-width" min="0" max="100" step="1" bind:value={sectionData.width}><br>
         <input type="number" id="section-height" name="section-height" min="0" max="100" step="1" bind:value={sectionData.height}><br>
       </div>
       <label for="section-zoom">Zoom Level:</label>
       <input type="number" id="section-zoom" name="section-zoom" min="0" max="200" step="0.1" bind:value={sectionData.zoom}><br>
       <label for="section-refresh">Refresh Interval:</label>
-      <input type="number" id="section-refresh" name="section-refresh" min="0" max="100" step="1" bind:value={sectionData.refreshInterval}><br>
+      <input type="number" id="section-refresh" name="section-refresh" placeholder="none" min="0" max="100" step="1" bind:value={sectionData.refreshInterval}><br>
       <div style="display:flex;gap:15px">
-        <button on:click={handleSave} id="save-section-btn">Save</button>
-        <button on:click={handleCancel} id="cancel-section-btn">Cancel</button>
+        <button on:click={() => submit(sectionData)}>
+          save
+        </button>
+        <button on:click={cancel}>
+          Cancel
+        </button>
       </div>
     </div>
-  </div>
-{/if}
+</div>
   
   <style>
     .popup {
