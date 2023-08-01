@@ -9,9 +9,9 @@
 <br>
 <form>
     <p>
-        Is admin account: <b>{$userData.isAdmin ? 'Yes' : 'No'}</b> <br>
-        Validated email: <b>{$user.emailVerified ? 'Yes' : 'No'}</b> <br>
-        Creation date: <b>{new Date(parseInt($user.metadata["createdAt"])).toLocaleDateString()}</b> <br>
+        Is admin account: <b>{$userData?.isAdmin ? 'Yes' : 'No'}</b> <br>
+        Validated email: <b>{$user?.emailVerified ? 'Yes' : 'No'}</b> <br>
+        Creation date: <b>{new Date(parseInt($user?.metadata["createdAt"])).toLocaleDateString()}</b> <br>
     </p>
     <div>
         <label for="email">Your email:</label>
