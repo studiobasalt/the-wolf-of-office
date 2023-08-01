@@ -1,22 +1,22 @@
 require('dotenv').config();
-const dataStore = require('./lib/dataStore.js');
-const { app, session, BrowserView } = require('electron');
-
+const { app } = require('electron');
+const serve = require('electron-serve');
 
 let mainWindow;
 
 function init(){
-    mainWindow = require('./lib/mainWindow.js');
+    mainWindow = require('./lib/browserWindow.js');
 
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
 
-    dataStore.subscribe((data) => {
-        // console.log(data);
-        const SlideFactory = require('./lib/slideFactory.js');
-        const slide1 = new SlideFactory(data.views[0]);
-    });
+    if (!app.isPackaged) {
+        mainWindow.loadURL(process.env.KIOSK_DEV_URL);
+    } else {
+        const loadURL = serve({ directory: '../kiosk-admin/build/' });
+        loadURL(mainWindow);
+    }
 }
 
 app.on('ready', init);
