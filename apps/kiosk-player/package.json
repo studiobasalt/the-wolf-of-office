@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "nodemon --watch . --exec 'electron ./src/kiosk-app/main.js'"
+    "dev": "nodemon --watch . --exec 'electron ./index.js'"
   },
   "devDependencies": {},
   "type": "commonjs",
