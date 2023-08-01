@@ -133,5 +133,5 @@ db.json
 teleport.yaml
 node_modules
 *.sqlite
-coverage
+node_modules
 .svelte-kit
