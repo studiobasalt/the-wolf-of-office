@@ -15,6 +15,6 @@
     </p>
     <div>
         <label for="email">Your email:</label>
-        <input type="email" placeholder="Email" disabled value={$user.email} />
+        <input type="email" placeholder="Email" disabled value={$user?.email} />
     </div>
 </form>
