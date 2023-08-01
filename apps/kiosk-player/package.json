@@ -1,13 +1,8 @@
 {
   "scripts": {
-    "dev:kiosk-app": "nodemon --watch . --exec 'electron ./src/kiosk-app/main.js'",
-    "dev:kiosk-ui": "vite dev",
-    "dev": "concurrently \"npm run dev:kiosk-app\" \"npm run dev:kiosk-ui\"",
-    "build:kiosk-ui": "vite build"
+    "dev": "nodemon --watch . --exec 'electron ./src/kiosk-app/main.js'"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.0"
-  },
+  "devDependencies": {},
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^16.3.1",
