@@ -33,7 +33,7 @@
 
     function remove() {
         const name = $deviceStore.find((device) => device.id === deviceSelect.value)?.name;
-        const sure = window.confirm(`Are you sure you want to delete: ${name}? ${deviceSelect.value}`);
+        const sure = window.confirm(`Are you sure you want to delete: ${name}?`);
         if (!sure) return;
         removeDevice(deviceSelect.value);
     }
@@ -49,6 +49,7 @@
     function addViewToDevice() {
         let device = $deviceStore.find((device) => device.id === curretDeviceId);
         let viewId = viewSelect.value;
+        if (!viewId) return;
         if (!device.views) device.views = [];
         device.views.push({
             id: viewId
@@ -130,7 +131,7 @@
                     <thead>
                         <tr>
                             <th>View name</th>
-                            <th>Refresh Timeout</th>
+                            <th>Refresh Timeout (ms)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
