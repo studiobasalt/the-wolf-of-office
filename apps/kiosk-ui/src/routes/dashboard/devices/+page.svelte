@@ -107,8 +107,10 @@
         <br />
         <br />
         <div style="display:flex;gap:15px">
-            <button on:click={add}> Add new Device </button>
-            <button on:click={remove}> Delete Device </button>
+            {#if $userData.isAdmin}
+                <button on:click={add}> Add new Device </button>
+                <button on:click={remove}> Delete Device </button>
+            {/if}
             <button on:click={rename}> Rename Device </button>
         </div>
     </div>
