@@ -71,7 +71,7 @@ export function getView(id: string) {
 }
 
 // Update devices afterh changes
-viewsStore.subscribe((viewsData) => {
+viewsStore.subscribe(async (viewsData) => {
 
     // Handle new and updated devices
     for (const view of viewsData) {
@@ -79,7 +79,7 @@ viewsStore.subscribe((viewsData) => {
 
         if (!view.id) {
             try {
-                setDoc(doc(collection(db, 'views')), view);
+                await setDoc(doc(collection(db, 'views')), view);
             } catch (e) {
                 alert(`Error adding view ${view.id}: ${e}`);
             }
@@ -87,7 +87,7 @@ viewsStore.subscribe((viewsData) => {
         }
 
         try {
-            updateDoc(doc(db, 'views', view.id), view);
+            await updateDoc(doc(db, 'views', view.id), view);
         } catch (e) {
             alert(`Error updating view ${view.id}: ${e}`);
         }

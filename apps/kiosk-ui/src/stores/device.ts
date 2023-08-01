@@ -54,7 +54,7 @@ export function updateDevice(device: Device) {
 }
 
 // Update devices afterh changes
-deviceStore.subscribe((devicesData) => {
+deviceStore.subscribe(async (devicesData) => {
 
     // Handle new and updated devices
     for (const device of devicesData) {
@@ -62,7 +62,7 @@ deviceStore.subscribe((devicesData) => {
 
         if (!device.id) {
             try {
-                setDoc(doc(collection(db, 'devices')), device);
+                await setDoc(doc(collection(db, 'devices')), device);
             } catch (e) {
                 alert(`Error adding device ${device.id}: ${e}`);
             }
@@ -70,7 +70,7 @@ deviceStore.subscribe((devicesData) => {
         }
 
         try {
-            updateDoc(doc(db, 'devices', device.id), device);
+            await updateDoc(doc(db, 'devices', device.id), device);
         } catch (e) {
             alert(`Error updating device ${device.id}: ${e}`);
         }
