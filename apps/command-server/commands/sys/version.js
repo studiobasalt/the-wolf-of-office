@@ -1,1 +1,0 @@
-// Get app version
