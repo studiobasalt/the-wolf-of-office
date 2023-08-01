@@ -1,24 +1,29 @@
 <script>
   import Footer from "$lib/footer.svelte";
-  import { onMount } from "svelte";
   import { goto } from '$app/navigation';
-  import { user } from "@stores/auth";
+  import { auth } from "@stores/firebase";
 
-  onMount(() => {
-    if (typeof window === 'undefined') return;
-    redirectAuth();
+  auth.onAuthStateChanged((user) => {
+    if (user) return;
+    if(window.location.pathname === '/auth') return;
+    goto('/auth');
   });
 
-  function redirectAuth(){
-    // if current route is already auth, don't redirect
-    if(window.location.pathname === '/auth') return;
-    if(!$user) goto('/auth');
-  }
+  
 </script>
 
 <style lang="scss">
   :global {
     @import "../global.scss";
+  }
+
+  main {
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
   }
 </style>
 
