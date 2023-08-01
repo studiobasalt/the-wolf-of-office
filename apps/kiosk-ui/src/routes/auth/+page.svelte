@@ -2,10 +2,10 @@
   import Logo from "$lib/logo.svelte";
   import Form from "./form.svelte";
   import CenterContainer from "$lib/centerContainer.svelte";
-  import { user } from "@stores/auth";
+  import { user, userData } from "@stores/auth";
   import { goto } from "$app/navigation";
 
-  $: if ($user) {
+  $: if ($user && $userData.hasAccess) {
     goto("/dashboard");
   }
 </script>
@@ -19,6 +19,6 @@
   <br>
   <br>
 
-  <Form />
+  <Form formError={$userData.hasAccess === false ? "You dont have permissions. <br> Ask the admin for access...." : ""} />
 
 </CenterContainer>

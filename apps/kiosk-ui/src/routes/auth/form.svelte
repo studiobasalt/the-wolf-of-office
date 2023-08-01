@@ -5,7 +5,7 @@
     import { doc, setDoc } from "firebase/firestore";
 
     let form
-    let formError = ""
+    export let formError = ""
 
     async function handleLogin() {
       try {
@@ -42,7 +42,7 @@
 
 {#if formError != ""}
     <p class="error">
-        {formError}
+        {@html formError}
     </p>
 {/if}
 <form bind:this={form}>
