@@ -35,7 +35,7 @@
       <label for="section-url">URL:</label>
       <input type="text" id="section-url" name="section-url" bind:value={sectionData.url}>
       <br>
-      <label for="section-position">Position X, Y, height, width: (in percentages of the screen)</label>
+      <label for="section-position">Position X, Y, width, height: (in percentages of the screen)</label>
       <div style="display:flex; gap: 10px">
         <input type="number" id="section-xpos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.x}><br>
         <input type="number" id="section-ypos" name="section-position" min="0" max="100" step="1" bind:value={sectionData.y}><br>
