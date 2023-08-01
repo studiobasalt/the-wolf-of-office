@@ -9,6 +9,7 @@
     } from '@stores/device';
     import { subscribeViews, unsubscribeViews, viewsStore, getView } from '@stores/view';
     import { onMount, onDestroy } from 'svelte';
+    import { userData } from '@stores/auth';
 
     let deviceSelect;
     let curretDeviceId;
@@ -113,6 +114,12 @@
     </div>
 
     {#if curretDeviceId}
+        <br />
+        {#if $userData.isAdmin}
+            <p>
+                Use this id <b>{curretDeviceId}</b> in the ENV variable KIOSK_DEVICE_ID on your kiosk device
+            </p>
+        {/if}
         <div>
             <h2>Views</h2>
 
@@ -131,7 +138,7 @@
                     <thead>
                         <tr>
                             <th>View name</th>
-                            <th>Refresh Timeout (ms)</th>
+                            <th>SlideShow Timeout (ms)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
