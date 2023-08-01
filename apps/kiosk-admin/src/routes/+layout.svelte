@@ -2,8 +2,10 @@
   import Footer from "$lib/footer.svelte";
   import { goto } from '$app/navigation';
   import { auth } from "@stores/firebase";
+  import { browser } from "$app/environment";
 
   auth.onAuthStateChanged((user) => {
+    if (!browser) return;
     if (user) return;
     if(window.location.pathname === '/auth') return;
     goto('/auth');
