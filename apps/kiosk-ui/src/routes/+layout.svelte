@@ -18,8 +18,6 @@
     if(window.location.pathname === '/auth') return;
     goto('/auth');
   });
-
-  
 </script>
 
 <style lang="scss">
@@ -40,6 +38,3 @@
 <main>
   <slot></slot>
 </main>
-
-
-<Footer />
