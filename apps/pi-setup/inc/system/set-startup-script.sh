@@ -2,11 +2,13 @@
 
 echo "-- Set startup script --"
 
+## MAKE USER DYNAMIC
+
 # Create script dir
-mkdir -p /home/pi/.config/lxsession/LXDE-pi/
+mkdir -p /home/volcano/.config/lxsession/LXDE-pi/
 
 # Copy template to user boot dir
-cp /usr/bin/the-wolf-of-office/apps/pi-setup/lxsession-autostart /home/pi/.config/lxsession/LXDE-pi/autostart
+sudo cp /usr/bin/the-wolf-of-office/apps/pi-setup/inc/lxsession-autostart /home/volcano/.config/lxsession/LXDE-pi/autostart
 
 # Set ownership
-chown pi:pi /home/pi/.config/lxsession/LXDE-pi/autostart
+chown volcano:volcano /home/volcano/.config/lxsession/LXDE-pi/autostart

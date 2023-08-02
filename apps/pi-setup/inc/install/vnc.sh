@@ -1,14 +1,10 @@
 #!/bin/bash
 
-echo '-- Installing noVNC --'
+echo '-- Installing VNC (remote) --'
 
 # enable and setup VNC service
 sudo apt-get install realvnc-vnc-server
 sudo raspi-config nonint do_vnc 0
-
-# Setup the client server
-apt install novnc -y
-ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 
 # Set VNC password
 vncpasswd -service

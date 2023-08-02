@@ -31,8 +31,7 @@ then
     bash ./inc/install/env-file.sh
     bash ./boot.sh
     bash ./inc/setup-os.sh
-    bash ./inc/install/teleport.sh
-    bash ./inc/install/novnc.sh
+    bash ./inc/install/vnc.sh
 fi
 
 # Run update script
