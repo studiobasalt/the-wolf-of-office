@@ -35,4 +35,5 @@ if [[ $1 != 'update' ]]; then
     read KIOSK_URL
 fi
 cp template.env .env
-sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./.env -i
+KIOSK_URL=$(printf '%s\n' "$KIOSK_URL" | sed -e 's/[\/&]/\\&/g')
+sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./.env -i 
