@@ -1,17 +1,21 @@
-html, body{
-    background: #502FE9;
-    font-family: sans-serif;
-    color: #30189b;
-    margin: 0;
-    padding: 0;
-}
-body{
-    padding: 0 40px;
+html,
+body {
+  background: #502FE9;
+  font-family: sans-serif;
+  color: #30189b;
+  margin: 0;
+  padding: 0;
 }
 
-h1,h5,p{
-    margin: 0;
-    padding: 0;
+body {
+  padding: 0 40px;
+}
+
+h1,
+h5,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 /* Style for all input fields */
@@ -24,8 +28,10 @@ input {
   background-color: #f8f8f8;
   font-size: 16px;
   border: 2px solid transparent;
-  &[type="text"], &[type="number"]{
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+
+  &[type="text"],
+  &[type="number"] {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -54,23 +60,32 @@ button {
   transition: all 0.3s ease;
   width: 50%;
   margin: 0;
+
   &:hover {
     background-color: #0b7dda;
-}
+  }
+
+  &.small {
+    padding: 5px 10px;
+    width: auto;
+    font-size: 14px;
+    background-color: #30189b;
+  }
 }
 
-form{
+form {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+
+  .row {
     display: flex;
-    gap: 15px;
-    flex-direction: column;
     width: 100%;
-    max-width: 500px;
-    .row{
-      display: flex;
-      width: 100%;
-      position: relative;
-      gap: 15px;
-    }
+    position: relative;
+    gap: 15px;
+  }
 }
 
 /* Global styling for HTML table */
