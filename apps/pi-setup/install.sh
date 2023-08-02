@@ -29,7 +29,8 @@ then
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git /usr/bin/the-wolf-of-office/
     cd /usr/bin/the-wolf-of-office/apps/pi-setup/
     bash ./inc/install/env-file.sh
-    bash ./boot.sh
+    bash ./inc/system/disable-wifi-sleep.sh
+    bash ./inc/system/setScreenOrientation.sh
     bash ./inc/setup-os.sh
     bash ./inc/install/vnc.sh
 fi
