@@ -62,7 +62,7 @@
 
 <main>
     <div id="sidebar">
-        <h2>View</h2>
+        <h2>Select a slide</h2>
         {#if $viewsStore}
             <select bind:value={selectedViewId}>
                 <option value="">Select view</option>
