@@ -6,7 +6,6 @@ import { onSnapshot, query, collection, updateDoc, doc, setDoc, deleteDoc } from
 export const viewsStore = writable<View[]>([]);
 let viewsBefore: View[] = [];
 
-
 export function viewStoreInit() {
     if (!browser) return;
     const q = query(collection(db, 'views'));

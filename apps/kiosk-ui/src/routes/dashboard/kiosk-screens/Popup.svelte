@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let submit: (section: ViewSection) => void;
   export let cancel: () => void;
+  export let remove: () => void;
 
   export let sectionData: ViewSection
 
@@ -14,19 +15,9 @@
     zoom: 100,
     refreshInterval: 0
   }
-
-  function urlValid(url: string) {
-    try {
-      new URL(url);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
   
 </script>
 
-<!-- Popup.svelte -->
 <div class="popup">
     <div id="view-section-form">
       <h3>View Section Form</h3>
@@ -47,11 +38,14 @@
       <label for="section-refresh">Refresh Interval:</label>
       <input type="number" id="section-refresh" name="section-refresh" placeholder="none" min="0" max="100" step="1" bind:value={sectionData.refreshInterval}><br>
       <div style="display:flex;gap:15px">
-        <button on:click={() => submit(sectionData)}>
-          save
+        <button on:click={remove}>
+          delete
         </button>
         <button on:click={cancel}>
           Cancel
+        </button>
+        <button on:click={() => submit(sectionData)}>
+          save
         </button>
       </div>
     </div>
@@ -68,6 +62,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 9999;
     }
   
     #view-section-form {

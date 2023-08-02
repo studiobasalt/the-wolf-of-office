@@ -13,4 +13,5 @@ type ViewSection = {
     height?: number;
     zoom?: number;
     refreshInterval?: number;
+    index?: number;
 }

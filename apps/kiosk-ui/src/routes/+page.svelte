@@ -31,7 +31,7 @@
 
     {#if $defaultDeviceStore}
         <h3>
-            kiosk screen starts in {timeLeft} seconds
+            kiosk slides starts in {timeLeft} seconds
         </h3>
     {:else}
         <h3>No device is set, open device management to set a device</h3>

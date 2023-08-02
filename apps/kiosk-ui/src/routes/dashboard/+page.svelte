@@ -13,7 +13,7 @@
             link: '/dashboard/accounts-management'
         },
         {
-            title: 'Kiosk Screens',
+            title: 'Kiosk Slides',
             icon: '/content.svg',
             link: '/dashboard/kiosk-screens'
         },
