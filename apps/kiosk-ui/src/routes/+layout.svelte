@@ -1,5 +1,4 @@
 <script>
-  import Footer from "$lib/footer.svelte";
   import { goto } from '$app/navigation';
   import { auth } from "@stores/firebase";
   import { browser } from "$app/environment";

@@ -55,7 +55,7 @@
             on:change={({ currentTarget }) => updateViewTimeout(i, currentTarget.value)}
         />
     </td>
-    <td style="display: flex">
+    <td style="display: flex; max-width: 200px; gap: 5px">
         {#if i !== 0}
             <button on:click={() => moveViewPosition(i, 'up')}> up </button>
         {/if}

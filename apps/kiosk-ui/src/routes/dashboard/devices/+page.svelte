@@ -23,9 +23,9 @@
 </script>
 
 <main>
-    <h1>Device Views</h1>
+    <h1>Device Settings</h1>
+    <br>
     <div>
-        <h2>Select Device</h2>
         {#if $deviceStore.length === 0}
             <p>No devices found</p>
         {:else}
@@ -54,15 +54,17 @@
 
     {#if curretDeviceId}
         <div>
-            <h2>Views</h2>
+            <h2>
+                Configure Slides
+            </h2>
 
             <select bind:this={viewSelect}>
-                <option value={null}>Select View</option>
+                <option value={null}>Select Slide</option>
                 {#each $viewsStore as view}
                     <option value={view.id}>{view.name}</option>
                 {/each}
             </select>
-            <button on:click={addViewToDevice}> Add View </button>
+            <button on:click={addViewToDevice}> Add Slide </button>
 
             {#if !currentDevice?.views || currentDevice.views.length === 0}
                 <p>No views found</p>
@@ -70,8 +72,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>View name</th>
-                            <th>SlideShow Timeout (ms)</th>
+                            <th>Slide name</th>
+                            <th>Slide Timeout (s)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

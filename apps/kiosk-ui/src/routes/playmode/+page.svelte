@@ -32,7 +32,7 @@
 
         // loop current device views and add in and out animations
         for(const view of currentDevice.views){
-            const timeout = view.timeout / 1000 //in ms
+            const timeout = view.timeout
             const currentSlide = slides[slideIndex]
 
             tl.set(currentSlide, {
