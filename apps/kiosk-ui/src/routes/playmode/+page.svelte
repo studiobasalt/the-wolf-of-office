@@ -4,6 +4,7 @@
     import { defaultDeviceStore, runningAsApp } from "@stores/local";
     import gsap from "gsap";
     import { browser } from "$app/environment";
+    import { goto } from "$app/navigation";
 
     let currentDevice: Device
     $: currentDevice = $deviceStore.find((d) => d.id === $defaultDeviceStore);
@@ -14,6 +15,12 @@
     function parseSectionStyle(section: ViewSection) {
         return `top: ${section.y}%; left: ${section.x}%; width: ${section.width}%; height: ${section.height}%;`
     }
+
+    window.addEventListener("keydown", (e) => {
+        if(e.key === "q" || e.key === "r"){
+            goto("/")
+        }
+    })
 
     function animateSlides(){
         if(!browser) return

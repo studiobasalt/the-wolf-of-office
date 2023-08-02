@@ -31,8 +31,10 @@
 
     {#if $defaultDeviceStore}
         <h3>
-            kiosk slides starts in {timeLeft} seconds
+            kiosk mode starts in {timeLeft} seconds.
         </h3>
+        <p>Press <b>Q</b> or <b>R</b> to exit the kiosk mode</p>
+        <br />
     {:else}
         <h3>No device is set, open device management to set a device</h3>
     {/if}
