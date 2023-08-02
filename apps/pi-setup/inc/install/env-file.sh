@@ -34,6 +34,6 @@ if [[ $1 != 'update' ]]; then
     echo 'Input the kiosk url for the app'
     read KIOSK_URL
 fi
-cp template.env .env
+cp template.env.js env.js
 KIOSK_URL=$(printf '%s\n' "$KIOSK_URL" | sed -e 's/[\/&]/\\&/g')
 sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./.env -i 

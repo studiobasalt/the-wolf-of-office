@@ -1,16 +1,37 @@
 {
+  "name": "kiosk-app",
+  "productName": "Kiosk App",
+  "license": "NONE",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --watch . --exec 'electron ./index.js'"
+    "dev": "nodemon --watch . --exec 'electron ./index.js'",
+    "start": "electron ./index.js",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder"
   },
-  "devDependencies": {},
+  "build": {
+    "appId": "nl.volcano.kiosk",
+    "files": [
+      "lib/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "index.js",
+      "env.js"
+    ],
+    "publish": null,
+    "linux": {
+      "target": "appimage"
+    }
+  },
+  "devDependencies": {
+    "electron": "^25.3.2",
+    "electron-builder": "^24.6.3"
+  },
   "type": "commonjs",
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "electron": "^25.3.2",
-    "electron-serve": "^1.1.0",
-    "electron-store": "^8.1.0",
     "eslint": "^8.46.0",
     "firebase": "^10.1.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "electron-serve": "^1.1.0"
   }
 }

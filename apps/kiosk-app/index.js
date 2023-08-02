@@ -1,6 +1,12 @@
-require('dotenv').config();
 const { app } = require('electron');
-const serve = require('electron-serve');
+const url = require('./env');
+
+app.commandLine.appendSwitch('ignore-gpu-blacklist')
+app.commandLine.appendSwitch('enable-gpu-rasterization')
+app.commandLine.appendSwitch('enable-accelerated-video')
+app.commandLine.appendSwitch('enable-accelerated-video-decode')
+app.commandLine.appendSwitch('use-gl', 'desktop')
+app.commandLine.appendSwitch('enable-features', 'VaapiVideoDecoder')
 
 let mainWindow;
 
@@ -11,7 +17,7 @@ function init() {
         mainWindow = null;
     });
 
-    mainWindow.loadURL(process.env.KIOSK_URL);
+    mainWindow.loadURL(url);
 }
 
 app.on('ready', init);
