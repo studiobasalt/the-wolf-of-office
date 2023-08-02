@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeFirestore, persistentLocalCache } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const config = {
@@ -11,6 +11,11 @@ const config = {
   appId: '1:894620490761:web:8a650bf634898111e5ecd8'
 };
 
-export const app = initializeApp(config);
-export const db = getFirestore(app);
+export const app = initializeApp(config, {
+  automaticDataCollectionEnabled: false,
+  name: 'wolf-of-office',
+})
+export const db = initializeFirestore(app,{
+  localCache: persistentLocalCache(),
+})
 export const auth = getAuth(app);
