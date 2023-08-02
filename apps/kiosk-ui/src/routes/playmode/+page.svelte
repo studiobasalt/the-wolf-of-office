@@ -1,74 +1,88 @@
 <script lang="ts">
-    import { deviceStore } from "@stores/device";
-    import { viewsStore } from "@stores/view";
-    import { defaultDeviceStore, runningAsApp } from "@stores/local";
-    import gsap from "gsap";
-    import { browser } from "$app/environment";
-    import { goto } from "$app/navigation";
+    import { deviceStore } from '@stores/device';
+    import { viewsStore } from '@stores/view';
+    import { defaultDeviceStore, runningAsApp } from '@stores/local';
+    import gsap from 'gsap';
+    import { browser } from '$app/environment';
+    import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
 
-    let currentDevice: Device
+    let currentDevice: Device;
     $: currentDevice = $deviceStore.find((d) => d.id === $defaultDeviceStore);
 
-    let slides = []
-    let tl
+    let slides = [];
+    let tl;
 
     function parseSectionStyle(section: ViewSection) {
-        return `top: ${section.y}%; left: ${section.x}%; width: ${section.width}%; height: ${section.height}%;`
+        return `top: ${section.y}%; left: ${section.x}%; width: ${section.width}%; height: ${section.height}%;`;
     }
 
-    window.addEventListener("keydown", (e) => {
-        if(e.key === "q" || e.key === "r"){
-            goto("/")
-        }
-    })
+    onMount(() => {
+        window?.addEventListener('keydown', (e) => {
+            if (e.key === 'q' || e.key === 'r') {
+                goto('/');
+            }
+        });
+    });
 
-    function animateSlides(){
-        if(!browser) return
-        if(!currentDevice) return
-        if(slides.length <= 1) return
-        
-        tl?.kill()
+    function animateSlides() {
+        if (!browser) return;
+        if (!currentDevice) return;
+        if (slides.length <= 1) return;
 
-        let slideIndex = 0
+        tl?.kill();
 
-        tl = gsap.timeline({repeat: -1, repeatDelay: 0})
+        let slideIndex = 0;
+
+        tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
 
         gsap.set(slides, {
-            opacity: 0,
-        })
+            opacity: 0
+        });
 
         // loop current device views and add in and out animations
-        for(const view of currentDevice.views){
-            const timeout = view.timeout
-            const currentSlide = slides[slideIndex]
+        for (const view of currentDevice.views) {
+            const timeout = view.timeout;
+            const currentSlide = slides[slideIndex];
 
-            tl.set(currentSlide, {
-                x: 0,
-                opacity: 1,
-                zIndex: 0
-            }, '<')
-            tl.set(currentSlide, {
-                zIndex: 1
-            }, `+=${timeout}`)
+            tl.set(
+                currentSlide,
+                {
+                    x: 0,
+                    opacity: 1,
+                    zIndex: 0
+                },
+                '<'
+            );
+            tl.set(
+                currentSlide,
+                {
+                    zIndex: 1
+                },
+                `+=${timeout}`
+            );
             tl.to(currentSlide, {
                 opacity: 0,
                 duration: 0.5,
-                ease: "power2.inOut",
+                ease: 'power2.inOut',
                 x: window.innerWidth
-            })
+            });
             // if this is the last item
-            if(slideIndex === currentDevice.views.length - 1){
-                tl.set(slides[0], {
-                    opacity: 1,
-                    x: 0,
-                    zIndex: 0
-                }, `<`)
+            if (slideIndex === currentDevice.views.length - 1) {
+                tl.set(
+                    slides[0],
+                    {
+                        opacity: 1,
+                        x: 0,
+                        zIndex: 0
+                    },
+                    `<`
+                );
             }
-            slideIndex++
+            slideIndex++;
         }
-        tl.play()
+        tl.play();
     }
-
 </script>
 
 <main class="playWindow">
@@ -76,19 +90,15 @@
         {@const runAnimation = animateSlides()}
         {@const currentView = $viewsStore.find((v) => v.id === deviceView?.id)}
         <div class="slide" bind:this={slides[i]}>
-            
             {#each currentView?.sections ?? [] as section, i}
-
                 <div class="section" style={parseSectionStyle(section)}>
                     {#if runningAsApp}
-                        <webview src={section.url}/>
+                        <webview src={section.url} />
                     {:else}
-                        <iframe src={section.url} title=""/>
+                        <iframe src={section.url} title="" />
                     {/if}
                 </div>
-
             {/each}
-
         </div>
     {/each}
 </main>
@@ -100,15 +110,16 @@
         left: 0;
         height: 100vh;
         width: 100vw;
-        .slide{
+        .slide {
             position: absolute;
             top: 0;
             left: 0;
             height: 100%;
             width: 100%;
-            .section{
+            .section {
                 position: absolute;
-                webview, iframe {
+                webview,
+                iframe {
                     height: 100%;
                     width: 100%;
                     border: none;
