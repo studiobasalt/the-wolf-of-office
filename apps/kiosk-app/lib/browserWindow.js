@@ -1,31 +1,28 @@
-const { BrowserWindow, session } = require('electron');
+const { BrowserWindow } = require('electron');
 
 const window = new BrowserWindow({
-    // fullscreen: true,
-    // show: true,
+    fullscreen: true,
+    show: true,
     skipTaskbar: true,
-    // resizable: false,
+    resizable: false,
     useContentSize: true,
     backgroundColor: '#502FE9',
     hasShadow: false,
-    // alwaysOnTop: true,
+    alwaysOnTop: true,
     title: 'Kiosk Player',
-    // frame: false,
-    // movable: false,
-    // titleBarStyle: 'hidden',
+    frame: false,
+    movable: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
         contextIsolation: false,
         spellcheck: false,
         enableWebSQL: false,
         webSecurity: false,
         allowRunningInsecureContent: true,
-
-        // disable sameorigin
         webviewTag: true,
     },
-    // allow mouse events to pass through window
-    transparent: true,
-    // kiosk: true,
+    transparent: false,
+    kiosk: true,
 });
 
 module.exports = window;
