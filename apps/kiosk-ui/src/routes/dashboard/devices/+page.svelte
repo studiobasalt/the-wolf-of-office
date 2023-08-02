@@ -1,42 +1,14 @@
 <script lang="ts">
-    import {
-        deviceStore,
-        subscribeDevices,
-        unsubscribeDevices,
-        addDevice,
-        removeDevice,
-        updateDevice
-    } from '@stores/device';
-    import { subscribeViews, unsubscribeViews, viewsStore, getView } from '@stores/view';
-    import { onMount, onDestroy } from 'svelte';
-    import { userData } from '@stores/auth';
+    import { deviceStore, updateDevice } from '@stores/device';
+    import { viewsStore } from '@stores/view';
+    import ViewRow from './viewRow.svelte';
+    import DeviceActions from './deviceActions.svelte';
+    import { updateDefaultDevice, defaultDeviceStore } from '@stores/local';
 
     let deviceSelect;
-    let curretDeviceId;
+    let curretDeviceId = $defaultDeviceStore;
     $: currentDevice = $deviceStore.find((device) => device.id === curretDeviceId);
     let viewSelect;
-
-
-    function add() {
-        addDevice({
-            name: prompt('Enter device name')
-        });
-    }
-
-    function remove() {
-        const name = $deviceStore.find((device) => device.id === deviceSelect.value)?.name;
-        const sure = window.confirm(`Are you sure you want to delete: ${name}?`);
-        if (!sure) return;
-        removeDevice(deviceSelect.value);
-    }
-
-    function rename() {
-        const newName = prompt(`Enter new name for ${currentDevice?.name}`);
-        if (!newName) return;
-        let device = $deviceStore.find((device) => device.id === deviceSelect.value);
-        device.name = newName;
-        updateDevice(device);
-    }
 
     function addViewToDevice() {
         let device = $deviceStore.find((device) => device.id === curretDeviceId);
@@ -48,39 +20,10 @@
         });
         updateDevice(device);
     }
-
-    function moveViewPosition(index, direction: 'up' | 'down') {
-        let device = $deviceStore.find((device) => device.id === curretDeviceId);
-        let views = device.views;
-        let view = views[index];
-        views.splice(index, 1);
-        views.splice(direction === 'up' ? index - 1 : index + 1, 0, view);
-        device.views = views;
-        updateDevice(device);
-    }
-
-    function removeViewFromDevice(viewId) {
-        let device = $deviceStore.find((device) => device.id === curretDeviceId);
-        let views = device.views;
-        let index = views.findIndex((view) => view.id === viewId);
-        views.splice(index, 1);
-        device.views = views;
-        updateDevice(device);
-    }
-
-    function updateViewTimeout(index: number, timeout: string|number) {
-        timeout = Number(timeout);
-        let device = $deviceStore.find((device) => device.id === curretDeviceId);
-        let views = device.views;
-        views[index].timeout = timeout;
-        device.views = views;
-        updateDevice(device);
-    }
 </script>
 
 <main>
     <h1>Device Views</h1>
-
     <div>
         <h2>Select Device</h2>
         {#if $deviceStore.length === 0}
@@ -94,25 +37,22 @@
                     </option>
                 {/each}
             </select>
+            {#if $defaultDeviceStore === curretDeviceId || curretDeviceId === null}
+                {#if curretDeviceId !== null}
+                    <span>Default Device</span>
+                {/if}
+            {:else}
+                <button class="small" on:click={() => updateDefaultDevice(curretDeviceId)}>
+                    set as device default
+                </button>
+            {/if}
         {/if}
         <br />
         <br />
-        <div style="display:flex;gap:15px">
-            {#if $userData.isAdmin}
-                <button on:click={add}> Add new Device </button>
-                <button on:click={remove}> Delete Device </button>
-            {/if}
-            <button on:click={rename}> Rename Device </button>
-        </div>
+        <DeviceActions deviceId={curretDeviceId} />
     </div>
 
     {#if curretDeviceId}
-        <br />
-        {#if $userData.isAdmin}
-            <p>
-                Use this id <b>{curretDeviceId}</b> in the ENV variable KIOSK_DEVICE_ID on your kiosk device
-            </p>
-        {/if}
         <div>
             <h2>Views</h2>
 
@@ -137,35 +77,7 @@
                     </thead>
                     <tbody>
                         {#each currentDevice.views as view, i}
-                            <tr>
-                                <td>
-                                  {getView(view.id).name}
-                                </td>
-                                <td>
-                                    <input 
-                                      type="number" 
-                                      placeholder="none" 
-                                      name="timeout" 
-                                      value={view.timeout ?? ''} 
-                                      on:change={({currentTarget}) => updateViewTimeout(i, currentTarget.value)}
-                                    />
-                                </td>
-                                <td style="display: flex">
-                                   {#if i !== 0}
-                                      <button on:click={() => moveViewPosition(i, 'up')}>
-                                        up 
-                                      </button>
-                                    {/if}
-                                    {#if i !== currentDevice.views.length - 1}
-                                      <button on:click={() => moveViewPosition(i, 'down')}>
-                                        down 
-                                      </button>
-                                    {/if}
-                                    <button style="background: red" on:click={() => removeViewFromDevice(view.id)}>
-                                      x 
-                                    </button>
-                                </td>
-                            </tr>
+                            <ViewRow deviceView={view} i={i} curretDeviceId={curretDeviceId} />
                         {/each}
                     </tbody>
                 </table>
