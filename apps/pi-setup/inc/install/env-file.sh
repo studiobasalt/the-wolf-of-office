@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /usr/bin/the-wolf-of-office/
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/
 
 if [[ $1 != 'update' ]]; then
     # Get user inputs
@@ -12,7 +12,7 @@ if [[ $1 != 'update' ]]; then
     read SCREEN_ORIENTATION
 else
     # Load old env file
-    . ./bin/inc/utls/load-env-file.sh
+    . ./inc/utls/load-env-file.sh
 fi
 
 echo '-- .ENV file set --'

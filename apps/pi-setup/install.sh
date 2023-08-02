@@ -27,7 +27,7 @@ then
     detect-os
     reboot=true
     sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git /usr/bin/the-wolf-of-office/
-    cd /usr/bin/the-wolf-of-office/bin/
+    cd /usr/bin/the-wolf-of-office/apps/pi-setup/
     bash ./inc/install/env-file.sh
     bash ./boot.sh
     bash ./inc/setup-os.sh

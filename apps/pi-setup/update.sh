@@ -1,6 +1,6 @@
 #!/bash/bin
 
-cd /usr/bin/the-wolf-of-office/bin
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/
 
 bash ./inc/update-the-wolf.sh
 bash ./boot.sh

@@ -14,5 +14,5 @@ ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 vncpasswd -service
 
 # Install config
-cd /usr/bin/the-wolf-of-office
-cp res/vncserver-x11.config /etc/vnc/config.d/vncserver-x11
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/
+cp inc/vncserver-x11.config /etc/vnc/config.d/vncserver-x11

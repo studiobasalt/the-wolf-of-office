@@ -3,10 +3,10 @@
 echo "-- Install Teleport --";
 
 # Go to root dir
-cd /usr/bin/the-wolf-of-office
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/
 
 # Load env's
-. ./bin/inc/utls/load-env-file.sh
+. ./inc/utls/load-env-file.sh
 
 # Get teleport token & server
 echo Input the the teleport master server master.example.nl...
@@ -17,15 +17,11 @@ echo Copy token in terminal
 read TELEPORT_TOKEN
 
 # Create teleport config file
-cp ./res/template.teleport.yaml ./res/teleport.yaml
+cp ./inc/template.teleport.yaml ./res/teleport.yaml
 sed -e 's/DEVICE_NAME/'$DEVICE_NAME'/' ./res/teleport.yaml -i
 sed -e 's/TELEPORT_TOKEN/'$TELEPORT_TOKEN'/' ./res/teleport.yaml -i
 sed -e 's/TELEPORT_MASTER_SERVER/'$TELEPORT_MASTER_SERVER'/' ./res/teleport.yaml -i
 mv ./res/teleport.yaml /etc/
 
 # Install teleport app
-cd /tmp
-curl -O https://get.gravitational.com/teleport-v9.0.1-linux-arm-bin.tar.gz
-tar -xzf teleport-v9.0.1-linux-arm-bin.tar.gz
-cd teleport
-sudo ./install
+curl https://goteleport.com/static/install.sh | bash -s 13.3.0

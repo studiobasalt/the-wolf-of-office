@@ -1,8 +1,8 @@
 
 echo '-- Setup pi --'
 
-# Set root
-cd /usr/bin/the-wolf-of-office/bin/inc/system/
+# Set dir
+cd /usr/bin/the-wolf-of-office/app/pi-setup/inc/system/
 
 # Run script parts
 bash ./disable-screen-saver.sh
