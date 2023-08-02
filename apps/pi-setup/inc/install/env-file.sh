@@ -2,6 +2,8 @@
 
 cd /usr/bin/the-wolf-of-office/apps/pi-setup/
 
+echo '-- Setting .ENV file pi setup --'
+
 if [[ $1 != 'update' ]]; then
     # Get user inputs
     echo Input device name, this is also the hostname for the pi
@@ -24,3 +26,13 @@ cp template.env .env
 sed -e 's/DEVICE_NAME_INPUT/'$DEVICE_NAME'/' ./.env -i
 sed -e 's/SCREEN_ORIENTATION_INPUT/'$SCREEN_ORIENTATION'/' ./.env -i
 sed -e 's/USER_NAME_INPUT/'$USER_NAME'/' ./.env -i
+
+
+echo '-- .ENV Setup for kiosk app --'
+cd /usr/bin/the-wolf-of-office/apps/kiosk-app/
+if [[ $1 != 'update' ]]; then
+    echo 'Input the kiosk url for the app'
+    read KIOSK_URL
+fi
+cp template.env .env
+sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./.env -i
