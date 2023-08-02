@@ -33,6 +33,7 @@ then
     bash ./inc/system/setScreenOrientation.sh
     bash ./inc/setup-os.sh
     bash ./inc/install/vnc.sh
+    bash ./inc/install/build-kiosk.sh
 fi
 
 # Run update script
