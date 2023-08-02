@@ -3,6 +3,14 @@
   import { goto } from '$app/navigation';
   import { auth } from "@stores/firebase";
   import { browser } from "$app/environment";
+  import { deviceStoreInit } from "@stores/device";
+  import { viewStoreInit } from "@stores/view";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    deviceStoreInit();
+    viewStoreInit();
+  });
 
   auth.onAuthStateChanged((user) => {
     if (!browser) return;

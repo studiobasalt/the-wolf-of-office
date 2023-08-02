@@ -16,15 +16,6 @@
     $: currentDevice = $deviceStore.find((device) => device.id === curretDeviceId);
     let viewSelect;
 
-    onMount(() => {
-        subscribeDevices();
-        subscribeViews();
-    });
-
-    onDestroy(() => {
-        unsubscribeDevices();
-        unsubscribeViews();
-    });
 
     function add() {
         addDevice({

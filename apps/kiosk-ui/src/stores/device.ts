@@ -6,17 +6,12 @@ import { onSnapshot, query, collection, updateDoc, doc, setDoc, deleteDoc } from
 export const deviceStore = writable<Device[]>([]);
 let devicesBefore: Device[] = [];
 
-let _unsubscribe
-export function unsubscribeDevices() {
-    _unsubscribe?.();
-}
-
-export function subscribeDevices() {
+export function deviceStoreInit() {  
     if (!browser) return;
     const q = query(collection(db, 'devices'));
-    _unsubscribe = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
         const devicesData: Device[] = [];
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach((doc) => {           
             try {
                 let data = doc.data() as Device;
                 data.id = doc.id;

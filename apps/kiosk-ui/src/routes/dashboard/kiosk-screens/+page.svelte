@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
   import { 
     viewsStore, 
-    subscribeViews, 
-    unsubscribeViews, 
     createView, 
     renameView, 
-    getView, 
     deleteView, 
     createSection, 
     updateSection,
@@ -21,13 +17,6 @@
   let handlePopupSubmit: (section: ViewSection) => void;
   let showPopup = false
   let popupSectionData
-
-  onMount(() => {
-    subscribeViews();
-  });
-  onDestroy(() => {
-    unsubscribeViews();
-  });
 
   function deleteCurrentView() {
     const sure = confirm(`Are you sure you want to delete view ${selectedView.name}?`);

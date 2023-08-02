@@ -6,15 +6,11 @@ import { onSnapshot, query, collection, updateDoc, doc, setDoc, deleteDoc } from
 export const viewsStore = writable<View[]>([]);
 let viewsBefore: View[] = [];
 
-let _unsubscribe
-export function unsubscribeViews() {
-    _unsubscribe?.();
-}
 
-export function subscribeViews() {
+export function viewStoreInit() {
     if (!browser) return;
     const q = query(collection(db, 'views'));
-    _unsubscribe = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
         const viewsData: View[] = [];
         querySnapshot.forEach((doc) => {
             try {
