@@ -4,10 +4,11 @@
     import { user } from "@stores/auth";
     import { auth } from "@stores/firebase";
     import { goto } from "$app/navigation";
+    import Footer from "@lib/footer.svelte";
 
     function handleLogout() {
         auth.signOut();
-        goto("/");
+        goto("/auth");
     }
 </script>
 
@@ -29,6 +30,8 @@
 <CenterContainer>
     <slot />
 </CenterContainer>
+
+<Footer />
 
 <style lang="scss">
     div {
