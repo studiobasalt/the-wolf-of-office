@@ -39,3 +39,7 @@ type _deviceView = {
     id: string;
     timeout?: number;
 }
+
+type Globals = {
+    version: number;
+}

@@ -4,11 +4,13 @@
     import { browser } from '$app/environment';
     import { deviceStoreInit } from '@stores/device';
     import { viewStoreInit } from '@stores/view';
+    import { globalsStoreInit } from '@stores/globals';
     import { onMount } from 'svelte';
 
     onMount(() => {
         deviceStoreInit();
         viewStoreInit();
+        globalsStoreInit();
     });
 
     auth.onAuthStateChanged((user) => {
