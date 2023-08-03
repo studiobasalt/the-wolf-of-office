@@ -13,36 +13,26 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Detect supported os
-detect-os(){
-    deviceFile=$(tr -d '\0' </proc/device-tree/model)
-    if [[ $deviceFile != *"Raspberry"* ]]; then
-        echo 'No support for your OS'
-        exit
-    fi
-}
-
-# Select install mode
-if [[ ! -f "/usr/bin/the-wolf-of-office/.gitignore" ]]
-then
-    detect-os
-    reboot=true
-    sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git /usr/bin/the-wolf-of-office/
-    cd /usr/bin/the-wolf-of-office/apps/pi-setup/
-    bash ./inc/install/env-file.sh
-    bash ./inc/system/disable-wifi-sleep.sh
-    bash ./inc/system/setScreenOrientation.sh
-    bash ./inc/setup-os.sh
-    bash ./inc/install/vnc.sh
-    bash ./inc/install/build-kiosk.sh
+deviceFile=$(tr -d '\0' </proc/device-tree/model)
+if [[ $deviceFile != *"Raspberry"* ]]; then
+    echo 'No support for your OS'
+    exit
 fi
 
-# Run update script
+# Get and set repo
+sudo git clone https://github.com/studiobasalt/the-wolf-of-office.git /usr/bin/the-wolf-of-office/
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/
+
+# Install and setup
+bash ./inc/install/env-file.sh
+bash ./inc/system/disable-wifi-sleep.sh
+bash ./inc/system/setScreenOrientation.sh
+bash ./inc/system/disable-screen-saver.sh
+bash ./inc/system/set-hostname.sh
+bash ./inc/install/vnc.sh
+
 bash ./update.sh
 
-# Reboot if nessesiery
-if [[ $reboot ]]; then
-    echo '-- Rebooting the system --'
-    reboot now
-fi
+echo '-- Rebooting the system --'
+reboot now
 
-echo '-- You can close this terminal --'

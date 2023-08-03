@@ -1,0 +1,8 @@
+@xset s off
+@xset -dpms
+@xset s noblank
+@point-rpi
+@unclutter -idle 5
+@/usr/bin/the-wolf-of-office/apps/pi-setup/boot.sh
+
+@chromium-browser KIOSK_URL_INPUT --start-fullscreen --load-extension=/usr/bin/the-wolf-of-office/assets/ignore-x-frame-options --kiosk --disable-translate --disable-web-security --noerrdialogs --no-first-run --fast --fast-start --disable-infobars --disable-features=Translat --disk-cache-dir=/dev/null/ --disable-client-side-phishing-detection --disable-features=site-per-process --single-process --autoplay-policy=no-user-gesture-required

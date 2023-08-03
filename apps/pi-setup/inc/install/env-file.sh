@@ -16,7 +16,7 @@ if [[ $1 != 'update' ]]; then
     read USER_NAME
 else
     # Load old env file
-    . ./inc/utls/load-env-file.sh
+    . ./inc/load-env-file.sh
 fi
 
 echo '-- .ENV file set --'
@@ -28,12 +28,12 @@ sed -e 's/SCREEN_ORIENTATION_INPUT/'$SCREEN_ORIENTATION'/' ./.env -i
 sed -e 's/USER_NAME_INPUT/'$USER_NAME'/' ./.env -i
 
 
-echo '-- .ENV Setup for kiosk app --'
-cd /usr/bin/the-wolf-of-office/apps/kiosk-app/
+echo '-- .ENV Setup for kiosk browser --'
+cd /usr/bin/the-wolf-of-office/apps/pi-setup/assets/
 if [[ $1 != 'update' ]]; then
-    echo 'Input the kiosk url for the app'
+    echo 'Input the kiosk url for the app without (http:// or https://)'
     read KIOSK_URL
 fi
-cp template.env.js env.js
+cp lxsession-autostart.template lxsession-autostart
 KIOSK_URL=$(printf '%s\n' "$KIOSK_URL" | sed -e 's/[\/&]/\\&/g')
-sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./.env -i 
+sed -e 's/KIOSK_URL_INPUT/'$KIOSK_URL'/' ./lxsession-autostart -i
