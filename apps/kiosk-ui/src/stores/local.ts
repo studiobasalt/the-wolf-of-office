@@ -1,22 +1,38 @@
 import { writable } from 'svelte/store'
 import { browser } from '$app/environment'
 
-export const defaultDeviceStore = writable<string>(init())
+type DeviceLocalEnv = {
+	defaultDevice: string,
+	screenOrientation: Orientation,
+}
+
+export const deviceEnvs = writable<DeviceLocalEnv | null>(init())
 
 function init(){
-	if (!browser) return ''
-	return localStorage?.defaultDevice || ''
+	if (!browser) return
+	const config : DeviceLocalEnv = {
+		defaultDevice: localStorage?.defaultDevice || '',
+		screenOrientation: localStorage?.screenOrientation || 'normal',
+	}
+	return config
 }
 	
 export function updateDefaultDevice(deviceId: string) {
-	if (!browser) return
 	localStorage?.setItem('defaultDevice', deviceId)
-	defaultDeviceStore.set(deviceId)
+	deviceEnvs.update((config) => {
+		return {
+			...config,
+			defaultDevice: deviceId,
+		}
+	})
 }
 
-function _runningAsApp() {
-	if (!browser) return false
-	const userAgent = window.navigator.userAgent.toLowerCase()
-	return userAgent.includes('electron') || userAgent.includes('nwjs')
+export function updateOrientation(orientation: Orientation){
+	localStorage?.setItem('screenOrientation', orientation)
+	deviceEnvs.update((config) => {
+		return {
+			...config,
+			screenOrientation: orientation,
+		}
+	})
 }
-export const runningAsApp = _runningAsApp()

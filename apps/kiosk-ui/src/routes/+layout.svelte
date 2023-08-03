@@ -29,11 +29,11 @@
     }
 
     main {
-        padding-top: 20vh;
-        padding-bottom: 20vh;
+        padding-top: 20%;
+        padding-bottom: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 60vh;
+        min-height: 60%;
     }
 </style>

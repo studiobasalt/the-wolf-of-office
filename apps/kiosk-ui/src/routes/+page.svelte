@@ -4,7 +4,8 @@
     import { goto } from '$app/navigation';
     import CenterContainer from '$lib/centerContainer.svelte';
     import Footer from '@lib/footer.svelte';
-    import { defaultDeviceStore } from '@stores/local';
+    import { deviceEnvs } from '@stores/local';
+    import ScreenOrientationSetup from '@lib/screenOrientationSetup.svelte';
 
     // Count down to take redirect to next page
     let timeLeft = 10;
@@ -24,12 +25,14 @@
     });
 </script>
 
+<ScreenOrientationSetup />
+
 <CenterContainer>
     <Logo />
 
     <h1 style="text-align: center">Welcome to the Wolf of Office</h1>
 
-    {#if $defaultDeviceStore}
+    {#if $deviceEnvs?.defaultDevice}
         <h3>
             kiosk mode starts in {timeLeft} seconds.
         </h3>

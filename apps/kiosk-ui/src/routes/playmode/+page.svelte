@@ -1,14 +1,15 @@
 <script lang="ts">
     import { deviceStore } from '@stores/device';
     import { viewsStore } from '@stores/view';
-    import { defaultDeviceStore, runningAsApp } from '@stores/local';
+    import { deviceEnvs } from '@stores/local';
     import gsap from 'gsap';
     import { browser } from '$app/environment';
     import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
+    import ScreenOrientationSetup from '@lib/screenOrientationSetup.svelte';
 
     let currentDevice: Device;
-    $: currentDevice = $deviceStore.find((d) => d.id === $defaultDeviceStore);
+    $: currentDevice = $deviceStore.find((d) => d.id === $deviceEnvs?.defaultDevice);
 
     let slides = [];
     let tl;
@@ -85,6 +86,8 @@
     }
 </script>
 
+<ScreenOrientationSetup />
+
 <main class="playWindow">
     {#each currentDevice?.views ?? [] as deviceView, i}
         {@const runAnimation = animateSlides()}
@@ -92,11 +95,7 @@
         <div class="slide" bind:this={slides[i]}>
             {#each currentView?.sections ?? [] as section, i}
                 <div class="section" style={parseSectionStyle(section)}>
-                    {#if runningAsApp}
-                        <webview src={section.url} />
-                    {:else}
-                        <iframe src={section.url} title="" />
-                    {/if}
+                    <iframe src={section.url} title="" />
                 </div>
             {/each}
         </div>
@@ -108,8 +107,8 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         .slide {
             position: absolute;
             top: 0;
@@ -118,7 +117,6 @@
             width: 100%;
             .section {
                 position: absolute;
-                webview,
                 iframe {
                     height: 100%;
                     width: 100%;

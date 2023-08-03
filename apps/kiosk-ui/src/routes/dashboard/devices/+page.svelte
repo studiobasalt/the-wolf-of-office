@@ -3,10 +3,10 @@
     import { viewsStore } from '@stores/view';
     import ViewRow from './viewRow.svelte';
     import DeviceActions from './deviceActions.svelte';
-    import { updateDefaultDevice, defaultDeviceStore } from '@stores/local';
+    import { updateDefaultDevice, deviceEnvs, updateOrientation } from '@stores/local';
 
     let deviceSelect;
-    let curretDeviceId = $defaultDeviceStore;
+    let curretDeviceId = $deviceEnvs?.defaultDevice;
     $: currentDevice = $deviceStore.find((device) => device.id === curretDeviceId);
     let viewSelect;
 
@@ -20,11 +20,15 @@
         });
         updateDevice(device);
     }
+
+    function updateScreen(e) {
+        updateOrientation(e.currentTarget.value as Orientation);
+    }
 </script>
 
 <main>
     <h1>Device Settings</h1>
-    <br>
+    <br />
     <div>
         {#if $deviceStore.length === 0}
             <p>No devices found</p>
@@ -37,14 +41,12 @@
                     </option>
                 {/each}
             </select>
-            {#if $defaultDeviceStore === curretDeviceId || curretDeviceId === null}
+            {#if $deviceEnvs?.defaultDevice === curretDeviceId || curretDeviceId === null}
                 {#if curretDeviceId !== null}
                     <span>Default Device</span>
                 {/if}
             {:else}
-                <button class="small" on:click={() => updateDefaultDevice(curretDeviceId)}>
-                    set as device default
-                </button>
+                <button class="small" on:click={() => updateDefaultDevice(curretDeviceId)}> set as this device </button>
             {/if}
         {/if}
         <br />
@@ -52,11 +54,19 @@
         <DeviceActions deviceId={curretDeviceId} />
     </div>
 
+    <div>
+        <h2>Configure screen orientation</h2>
+        <select on:change={updateScreen} value={$deviceEnvs?.screenOrientation}>
+            <option value="default">Default</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+        </select>
+        <span> Local stored and only applied in kiosk play mode </span>
+    </div>
+
     {#if curretDeviceId}
         <div>
-            <h2>
-                Configure Slides
-            </h2>
+            <h2>Configure Slides</h2>
 
             <select bind:this={viewSelect}>
                 <option value={null}>Select Slide</option>
@@ -79,7 +89,7 @@
                     </thead>
                     <tbody>
                         {#each currentDevice.views as view, i}
-                            <ViewRow deviceView={view} i={i} curretDeviceId={curretDeviceId} />
+                            <ViewRow deviceView={view} {i} {curretDeviceId} />
                         {/each}
                     </tbody>
                 </table>

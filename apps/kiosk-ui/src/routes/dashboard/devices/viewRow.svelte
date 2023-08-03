@@ -6,7 +6,7 @@
     export let i;
     export let curretDeviceId;
 
-    let view 
+    let view;
     $: view = $viewsStore.find((view) => view.id === deviceView.id);
 
     function moveViewPosition(index, direction: 'up' | 'down') {
@@ -30,12 +30,10 @@
 
     function updateViewTimeout(index: number, timeout: string | number) {
         timeout = Number(timeout);
-        console.log(timeout);
-        
+
         let device = $deviceStore.find((device) => device.id === curretDeviceId);
         let views = device.views;
-        console.log(index);
-        
+
         views[index].timeout = timeout;
         device.views = views;
         updateDevice(device);
