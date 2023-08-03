@@ -18,6 +18,7 @@
     }
 
     onDestroy(() => {
+        if (!browser) return;
         document.body.classList.remove('left');
         document.body.classList.remove('right');
     });
