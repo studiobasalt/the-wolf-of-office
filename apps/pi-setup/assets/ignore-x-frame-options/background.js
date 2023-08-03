@@ -21,8 +21,5 @@ chrome.declarativeNetRequest.updateSessionRules(
             }
         ]
     }, () => {
-        if (chrome.runtime.lastError) {
-            console.log(chrome.runtime.lastError.message);
-        }
     }
 );
