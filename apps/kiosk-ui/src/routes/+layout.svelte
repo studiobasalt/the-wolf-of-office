@@ -31,11 +31,12 @@
     }
 
     main {
-        padding-top: 20%;
-        padding-bottom: 20%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 60%;
+        position: relative;
+        padding-top: 150px;
+        padding-bottom: 150px;
     }
 </style>
