@@ -1,57 +1,56 @@
-# The Wolf of Office V0.6
+# The Wolf of Office
 
-Telegram bot made for the 51basalt office
+The Wolf of Office is a versatile project that turns your Raspberry Pi into a powerful kiosk system, complete with a custom admin panel for easy management. This project utilizes Firebase and Svelte to create a user-friendly UI, and it includes a convenient Pi setup script for quick installation.
 
-This software is made to run on an Raspberry Pi
+## Features
 
-## Commands
+-   Raspberry Pi Kiosk: Transform your Raspberry Pi into an efficient kiosk system.
+-   Custom Admin Panel: Manage your kiosk content and settings effortlessly through the dedicated admin panel.
+-   Firebase Integration: Seamlessly integrate Firebase for data storage and real-time updates.
+-   Svelte UI: Enjoy a responsive and modern user interface built with the Svelte framework.
+-   Pi Setup Script: Use the provided setup script to streamline the installation process.
+-   Chromium Startup: The system will launch Chromium on startup, disregarding x-frame-options for improved compatibility.
+-   User Control: Ensure user access and control within the kiosk environment.
 
-/help for command list
+## Getting Started
 
-## Fast install for the PI
+To get started with The Wolf of Office on your Raspberry Pi, follow these steps:
+
+1. Install and host the svelte UI, accessable by the pi
+2. Setup firebase and add your credentials to the UI
+   '''file: /apps/kiosk-ui/src/stores/firebase.ts'''
+3. Make sure you have a Raspberry Pi running a compatible operating system.
+4. Open the terminal on your Raspberry Pi.
+
+Run the following command to install The Wolf of Office:
 
 ```bash
 $ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/apps/pi-setup/install.sh)
 ```
 
-## How to add a new command
+5. The setup script will guide you through the installation process.
 
-1. Copy the command_template.py file in the ./inc folder to ./inc/commands
-2. Rename the file to your command
-3. Setup the command
-4. (optional) Place your sound files in de ./sounds folder
-5. Update this README file
+6. After the installation is complete, your Raspberry Pi will automatically launch Chromium in kiosk mode on startup.
 
-## Setup a pi
+## Usage
 
-1. Install os
-2. create ssh file in /boot of sd cart
-3. create a txt file in /boot/ wpa_supplicant.conf (or use bin/pi/sd-setup.sh for fast setup)
+### Admin Panel
 
-```
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=NL
+The admin panel provides an intuitive interface to manage your kiosk content and settings. Simply log in to the admin panel and customize the displayed content, URLs, and other options.
 
-network={
-    ssid="YOUR_NETWORK_NAME"
-    psk="YOUR_PASSWORD"
-    key_mgmt=WPA-PSK
-}
-```
+### User Control
 
-4. Login over ssh
-5. Change ssh password
-6. Install the project, and follow instructions
+The user control feature allows you to manage user access within the kiosk environment. Define user roles, access levels, and permissions to create a tailored experience.
 
-```
-bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/apps/pi-setup/install.sh)
-```
+### VNC setup
 
-4. Local login with realvnc client and edit in UI vnc option (right click icon top)
-   (download: https://www.realvnc.com/en/connect/download/viewer/)
-   This is needed so that noVNC can run
-   set options:
-   Encryption: Prefer off
-   Authentication: VNC password
-5. Set a VNC password
+Connect remotely to your Raspberry Pi using VNC. The setup script will automatically install and configure VNC for you.
+https://www.realvnc.com/en/connect/download/viewer/
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to The Wolf of Office, please follow these steps:
+
+1. Fork the repository and create a new branch.
+2. Make your changes and test thoroughly.
+3. Create a pull request, detailing the changes you've made.
