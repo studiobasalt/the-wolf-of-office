@@ -18,6 +18,7 @@ export function globalsStoreInit() {
 
 globalsStore.subscribe(async (globalsData) => {
     if (!browser) return;
+    if (!globalsData) return;
 
     const newVersion = globalsData?.version;
     const oldVersion = globalStoreBefore?.version;
