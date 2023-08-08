@@ -26,7 +26,6 @@ cd /usr/bin/the-wolf-of-office/apps/pi-setup/
 # Install and setup
 bash ./inc/install/env-file.sh
 bash ./inc/system/disable-wifi-sleep.sh
-bash ./inc/system/setScreenOrientation.sh
 bash ./inc/system/disable-screen-saver.sh
 bash ./inc/system/set-hostname.sh
 bash ./inc/install/vnc.sh
