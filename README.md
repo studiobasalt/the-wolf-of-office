@@ -25,7 +25,9 @@ To get started with The Wolf of Office on your Raspberry Pi, follow these steps:
 Run the following command to install The Wolf of Office:
 
 ```bash
-$ bash <(curl -Ls https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/apps/pi-setup/install.sh)
+wget https://raw.githubusercontent.com/studiobasalt/the-wolf-of-office/main/apps/pi-setup/install.sh
+sudo bash install.sh
+rm install.sh
 ```
 
 5. The setup script will guide you through the installation process.
