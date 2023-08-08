@@ -27,11 +27,10 @@
     });
 
     function animateSlides() {
+        tl?.kill();
         if (!browser) return;
         if (!currentDevice) return;
         if (slides.length <= 1) return;
-
-        tl?.kill();
 
         let slideIndex = 0;
 
