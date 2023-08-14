@@ -17,11 +17,12 @@ function init(){
 	return config
 }
 	
-export function updateDefaultDevice(deviceId: string) {
+export function updateDefaultDevice(deviceId: string | undefined) {
+	if (!deviceId) return
 	localStorage?.setItem('defaultDevice', deviceId)
 	deviceEnvs.update((config) => {
 		return {
-			...config,
+			...config!,
 			defaultDevice: deviceId,
 		}
 	})
@@ -31,7 +32,7 @@ export function updateOrientation(orientation: Orientation){
 	localStorage?.setItem('screenOrientation', orientation)
 	deviceEnvs.update((config) => {
 		return {
-			...config,
+			...config!,
 			screenOrientation: orientation,
 		}
 	})

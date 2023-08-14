@@ -49,14 +49,15 @@ export const load = (async () => {
         for (const user of users) {
             if (user.isSelf) continue;
             if (JSON.stringify(user) === JSON.stringify(lastUsersUpdate[users.indexOf(user)])) continue;
-            const docRef = doc(db, 'users', user.id);
             try {
+                if (!user.id) continue
+                const docRef = doc(db, 'users', user.id);
                 updateDoc(docRef, {
                     isAdmin: user?.isAdmin ?? false,
                     hasAccess: user?.hasAccess ?? false
                 });
-            } catch (error) {
-                alert(error);
+            } catch (error: any) {
+                alert(error?.message ?? 'An error occured while updating user data');
             }
         }
     });

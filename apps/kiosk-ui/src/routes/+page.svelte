@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Logo from '$lib/logo.svelte';
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
@@ -9,7 +9,7 @@
 
     // Count down to take redirect to next page
     let timeLeft = 10;
-    let timer;
+    let timer: NodeJS.Timeout | undefined
     onMount(() => {
         timer = setInterval(() => {
             timeLeft -= 1;

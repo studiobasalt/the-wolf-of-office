@@ -2,11 +2,11 @@
     import { userData } from '@stores/auth';
     import { deviceStore, addDevice, removeDevice, updateDevice } from '@stores/device';
 
-    export let deviceId;
+    export let deviceId: string | undefined;
 
     function add() {
         addDevice({
-            name: prompt('Enter device name')
+            name: prompt('Enter device name') || 'New Device',
         });
     }
 
@@ -21,6 +21,7 @@
         const newName = prompt(`Enter new name for ${$deviceStore.find((device) => device.id === deviceId)?.name}`);
         if (!newName) return;
         let device = $deviceStore.find((device) => device.id === deviceId);
+        if (!device) return;
         device.name = newName;
         updateDevice(device);
     }

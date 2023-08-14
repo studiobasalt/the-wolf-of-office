@@ -8,11 +8,11 @@
     import { onMount } from 'svelte';
     import ScreenOrientationSetup from '@lib/screenOrientationSetup.svelte';
 
-    let currentDevice: Device;
+    let currentDevice: Device | undefined;
     $: currentDevice = $deviceStore.find((d) => d.id === $deviceEnvs?.defaultDevice);
 
-    let slides = [];
-    let tl;
+    let slides: HTMLDivElement[] = [];
+    let tl: gsap.core.Timeline | undefined;
 
     function parseSectionStyle(section: ViewSection) {
         return `top: ${section.y}%; left: ${section.x}%; width: ${section.width}%; height: ${section.height}%;`;
@@ -41,7 +41,7 @@
         });
 
         // loop current device views and add in and out animations
-        for (const view of currentDevice.views) {
+        for (const view of currentDevice.views ?? []) {
             const timeout = view.timeout;
             const currentSlide = slides[slideIndex];
 
@@ -68,7 +68,7 @@
                 x: window.innerWidth
             });
             // if this is the last item
-            if (slideIndex === currentDevice.views.length - 1) {
+            if (currentDevice.views && slideIndex === currentDevice.views.length - 1) {
                 tl.set(
                     slides[0],
                     {

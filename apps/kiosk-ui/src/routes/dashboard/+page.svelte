@@ -1,7 +1,7 @@
 <script lang="ts">
     import AppTileGrid from './appTileGrid.svelte';
 
-    const gridItems = [
+    const gridItems:AppTileItem[] = [
         {
             title: 'My Account',
             icon: '/account.svg',

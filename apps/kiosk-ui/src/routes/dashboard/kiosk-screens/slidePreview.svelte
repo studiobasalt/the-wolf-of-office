@@ -1,8 +1,8 @@
 <script lang="ts">
     import { viewsStore } from "@stores/view";
-    export let selectedViewId
+    export let selectedViewId: string
     export let editSectionOnView: (index: number) => void;
-    let currentView: View
+    let currentView: View | undefined;
     $: currentView = $viewsStore.find(view => view.id === selectedViewId);
 </script>
 

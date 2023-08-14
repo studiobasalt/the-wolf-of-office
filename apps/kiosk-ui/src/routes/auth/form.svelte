@@ -4,14 +4,14 @@
     import { db } from '@stores/firebase';
     import { doc, setDoc } from "firebase/firestore";
 
-    let form
+    let form: HTMLFormElement
     export let formError = ""
 
     async function handleLogin() {
       try {
         await signInWithEmailAndPassword(auth, form.email.value, form.password.value)
-      } catch (error) {
-        formError = error.message
+      } catch (error:any) {
+        formError = error?.message ?? "Something went wrong"
       }
     }
 
@@ -19,15 +19,16 @@
       try {
         await createUserWithEmailAndPassword(auth, form.email.value, form.password.value);
         try {
+          if (!auth.currentUser) throw new Error("User correctly created")
           await setDoc(doc(db, "users", auth.currentUser.uid), {
             isUser: true,
             email: form.email.value,
           })
-        } catch (error) {
+        } catch (error: any) {
           alert(error.message)
         }
-      } catch (error) {
-        formError = error.message
+      } catch (error:any) {
+        formError = error?.message ?? "Something went wrong"
       }
     }
 

@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     // Define an array of app tiles
-    export let appTiles = [];
-  </script>
+    export let appTiles:AppTileItem[] = [];
+</script>
   
   <div class="grid">
     <!-- Loop through the app tiles and render each one -->

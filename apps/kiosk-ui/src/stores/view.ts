@@ -25,16 +25,17 @@ export function viewStoreInit() {
     });
 }
 
-export function createView(name: string) {
+export function createView(name: string | null) {
     const view: View = {
-        name,
+        name: name || 'New View',
     };
     viewsStore.update(d => [...d, view]);
 }
 
-export function renameView(id: string, name: string) {
+export function renameView(id: string, name: string | null) {
     const view = getView(id);
-    view.name = name;
+    if (!view) return;
+    view.name = name || 'Renamed View';
     viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
 }
 
@@ -44,6 +45,7 @@ export function deleteView(id: string) {
 
 export function createSection(id: string, section: ViewSection) {
     const view = getView(id);
+    if (!view) return;
     view.sections = view.sections || [];
     view.sections.push(section);
     viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
@@ -51,13 +53,16 @@ export function createSection(id: string, section: ViewSection) {
 
 export function updateSection(id: string, index: number, section: ViewSection) {
     const view = getView(id);
+    if (!view) return;
+    if (!view.sections) return;
     view.sections[index] = section;
     viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
 }
 
 export function removeSection(id: string, index: number) {
     const view = getView(id);
-    view.sections.splice(index, 1);
+    if (!view) return;
+    view.sections?.splice(index, 1);
     viewsStore.update(d => [...d.filter(d => d.id !== id), view]);
 }
 

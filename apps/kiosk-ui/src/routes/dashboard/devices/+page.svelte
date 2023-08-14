@@ -8,12 +8,13 @@
     let deviceSelect;
     let curretDeviceId = $deviceEnvs?.defaultDevice;
     $: currentDevice = $deviceStore.find((device) => device.id === curretDeviceId);
-    let viewSelect;
+    let viewSelect: HTMLSelectElement;
 
     function addViewToDevice() {
         let device = $deviceStore.find((device) => device.id === curretDeviceId);
         let viewId = viewSelect.value;
         if (!viewId) return;
+        if (!device) return;
         if (!device.views) device.views = [];
         device.views.push({
             id: viewId
@@ -21,8 +22,10 @@
         updateDevice(device);
     }
 
-    function updateScreen(e) {
-        updateOrientation(e.currentTarget.value as Orientation);
+    function updateScreen(e: Event) {
+        const elm = e?.currentTarget as HTMLSelectElement | null;
+        const value = elm?.value ?? 'default';
+        updateOrientation(value as Orientation);
     }
 </script>
 

@@ -32,7 +32,8 @@ export function addDevice(device: Device) {
     });
 }
 
-export function removeDevice(id: string) {
+export function removeDevice(id: string | undefined) {
+    if (!id) return;
     try {
         deleteDoc(doc(db, 'devices', id));
     } catch (e) {

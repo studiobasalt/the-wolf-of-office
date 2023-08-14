@@ -11,13 +11,13 @@
     import SlidePreview from './slidePreview.svelte';
 
     let selectedViewId = '';
-    let selectedView: View;
+    let selectedView: View | undefined;
     $: selectedView = $viewsStore.find((view) => view.id === selectedViewId);
 
     let handlePopupSubmit: (section: ViewSection) => void;
     let handleDelete: () => void;
     let showPopup = false;
-    let popupSectionData;
+    let popupSectionData: ViewSection | undefined
 
     function createSectionOnView() {
         showPopup = true;
@@ -27,34 +27,34 @@
         };
         handleDelete = () => {
             showPopup = false;
-            popupSectionData = null;
+            popupSectionData = undefined;
         };
     }
 
     function editSectionOnView(index: number) {
         showPopup = true;
-        popupSectionData = selectedView.sections[index];
-        popupSectionData.index = index;
+        popupSectionData = selectedView?.sections?.[index];
+        if (popupSectionData) popupSectionData.index = index;
         handlePopupSubmit = (section: ViewSection) => {
             updateSection(selectedViewId, index, section);
             showPopup = false;
-            popupSectionData = null;
+            popupSectionData = undefined;
         };
         handleDelete = () => {
             removeSection(selectedViewId, index);
             showPopup = false;
-            popupSectionData = null;
+            popupSectionData = undefined;
         };
     }
 
     function cancelPopup() {
         showPopup = false;
-        popupSectionData = null;
+        popupSectionData = undefined;
     }
 </script>
 
 {#if showPopup}
-    <Popup submit={handlePopupSubmit} cancel={cancelPopup} sectionData={popupSectionData} remove={handleDelete}  />
+    <Popup submit={handlePopupSubmit} cancel={cancelPopup} sectionData={popupSectionData || {}} remove={handleDelete}  />
 {/if}
 
 <h1>Kiosk Slides</h1>

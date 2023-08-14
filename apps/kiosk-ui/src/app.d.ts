@@ -9,6 +9,12 @@ declare namespace App {
     // interface Stuff {}
 }
 
+type AppTileItem = {
+    title: string;
+    icon: string;
+    link: string;
+}
+
 type View = {
     id?: string;
     name?: string;

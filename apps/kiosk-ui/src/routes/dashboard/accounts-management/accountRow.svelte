@@ -5,7 +5,7 @@
     export let user: UserData;
     export let dataStore = writable<UserData[]>();
 
-    let form;
+    let form: HTMLFormElement;
 
     function inputChange() {
         dataStore.update((users) => {

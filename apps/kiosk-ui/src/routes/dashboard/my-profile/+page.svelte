@@ -1,6 +1,9 @@
 <script lang="ts">
     import { userData, user } from '@stores/auth';
     import { globalsStore } from '@stores/globals';
+
+    var creationDate: Date | null;
+    $: creationDate = $user ? new Date($user.metadata.creationTime ?? '') : null;
 </script>
 
 <h1>My account</h1>
@@ -11,7 +14,7 @@
     <p>
         Is admin account: <b>{$userData?.isAdmin ? 'Yes' : 'No'}</b> <br>
         Validated email: <b>{$user?.emailVerified ? 'Yes' : 'No'}</b> <br>
-        Creation date: <b>{new Date(parseInt($user?.metadata["createdAt"])).toLocaleDateString()}</b> <br>
+        Creation date: <b>{creationDate?.toLocaleDateString()}</b> <br>
         UI version: <b>{$globalsStore?.version}</b> <br>
     </p>
     <div>
