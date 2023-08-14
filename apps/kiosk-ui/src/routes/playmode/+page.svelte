@@ -26,9 +26,20 @@
         });
     });
 
-    function animateSlides() {
+    // Animate slides when the device changes
+    $: {
+        $deviceStore
+        animateSlides();
+    }
+
+    async function animateSlides() {
         tl?.kill();
         if (!browser) return;
+        // Wait for the DOM to update
+        await new Promise((r) => setTimeout(r, 200));
+        // Cleanup any null slides
+        slides = [...slides.filter((s) => s !== null)];
+
         if (!currentDevice) return;
         if (slides.length <= 1) return;
 
@@ -36,7 +47,8 @@
 
         tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
 
-        gsap.set(slides, {
+        // Hide all slides except the first one
+        gsap.set([...slides].shift() ?? slides, {
             opacity: 0
         });
 
@@ -45,6 +57,7 @@
             const timeout = view.timeout;
             const currentSlide = slides[slideIndex];
 
+            // Make current slide visible
             tl.set(
                 currentSlide,
                 {
@@ -54,6 +67,7 @@
                 },
                 '<'
             );
+            // Set current slide to be on top after timeout
             tl.set(
                 currentSlide,
                 {
@@ -61,6 +75,7 @@
                 },
                 `+=${timeout}`
             );
+            // Animate out
             tl.to(currentSlide, {
                 opacity: 0,
                 duration: 0.5,
@@ -89,15 +104,15 @@
 
 <main class="playWindow">
     {#each currentDevice?.views ?? [] as deviceView, i}
-        {@const runAnimation = animateSlides()}
-        {@const currentView = $viewsStore.find((v) => v.id === deviceView?.id)}
-        <div class="slide" bind:this={slides[i]}>
-            {#each currentView?.sections ?? [] as section, i}
-                <div class="section" style={parseSectionStyle(section)}>
-                    <iframe src={section.url} title="" />
-                </div>
-            {/each}
-        </div>
+        <key i={deviceView.id}>
+            <div class="slide" bind:this={slides[i]}>
+                {#each $viewsStore.find((v) => v.id === deviceView?.id)?.sections ?? [] as section}
+                    <div class="section" style={parseSectionStyle(section)}>
+                        <iframe src={section.url} title="" />
+                    </div>
+                {/each}
+            </div>
+        </key>
     {/each}
 </main>
 
