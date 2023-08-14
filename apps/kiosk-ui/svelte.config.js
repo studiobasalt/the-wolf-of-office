@@ -16,6 +16,7 @@ const config = {
         inlineStyleThreshold: 1024 * 5, // 1kb * X
         version: {
             name: Date.now().toString(),
+            pollInterval: 1000 * 10,
         },
         alias: {
             '@lib': path.resolve('./src/lib'),

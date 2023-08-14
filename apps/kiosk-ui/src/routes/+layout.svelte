@@ -5,6 +5,14 @@
     import { deviceStoreInit } from '@stores/device';
     import { viewStoreInit } from '@stores/view';
     import { globalsStoreInit } from '@stores/globals';
+    import { updated } from '$app/stores';
+
+    // Reload on update (PWA)
+    updated.subscribe(async (value) => {
+        if (value) {
+            window.location.reload();
+        }
+    });
     
     auth.onAuthStateChanged((user) => {
         if (!browser) return;
