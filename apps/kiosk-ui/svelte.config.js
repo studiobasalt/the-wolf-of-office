@@ -1,9 +1,6 @@
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
-
-const scssPath = dirname(fileURLToPath(import.meta.url)) + '/src/scss'
+import path from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,11 +8,7 @@ const config = {
         scss: {
             includePaths: [
                 'src'
-            ],
-            // prependData: `
-            //     @import '${scssPath}/variables.scss';
-            //     @import '${scssPath}/mixins.scss';
-            // `,
+            ]
         }
     }),
     kit: {
