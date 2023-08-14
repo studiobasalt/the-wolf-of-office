@@ -60,6 +60,6 @@
         {#if i !== $deviceStore.find((device) => device.id === curretDeviceId)?.views?.length - 1}
             <button on:click={() => moveViewPosition(i, 'down')}> down </button>
         {/if}
-        <button style="background: red" on:click={() => removeViewFromDevice(view.id)}> x </button>
+        <button style="background: red" on:click={() => removeViewFromDevice(view?.id)}> x </button>
     </td>
 </tr>
